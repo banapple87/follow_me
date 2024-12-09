@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FOLLOW ME"
+        android:textColor="#6A24FE"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:gravity="start"/>
+
+    <!-- 아이디 입력 필드 -->
+    <EditText
+        android:id="@+id/username_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#D0D2D2"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- 비밀번호 입력 필드 -->
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PW"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#D0D2D2"
+        android:inputType="textPassword"/>
+
+    <!-- 아이디 저장 체크박스 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <CheckBox
+            android:id="@+id/remember_checkbox"
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:buttonTint="#6A24FE" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingHorizontal="5dp"
+            android:text="아이디 저장하기"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- 로그인 버튼 -->
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#6A24FE"
+        android:layout_marginBottom="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"/>
+
+    <!-- 회원가입 버튼 -->
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Register"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#6A24FE"
+        android:layout_marginBottom="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"/>
+</LinearLayout>

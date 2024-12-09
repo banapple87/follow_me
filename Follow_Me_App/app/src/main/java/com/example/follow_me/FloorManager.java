@@ -1,6 +1,7 @@
 package com.example.follow_me;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.NaverMap;
@@ -112,6 +113,7 @@ public class FloorManager {
 
         ((MainActivity) context).runOnUiThread(() -> {
             currentPolylineWrapper.value.setWidth(8);
+            currentPolylineWrapper.value.setColor(Color.RED); // 빨간색 설정
             currentPolylineWrapper.value.setMap(naverMap);
             polylines.add(currentPolylineWrapper.value);
         });
@@ -128,6 +130,7 @@ public class FloorManager {
                     PolylineOverlay newPolyline = new PolylineOverlay();
                     ((MainActivity) context).runOnUiThread(() -> {
                         newPolyline.setWidth(8);
+                        newPolyline.setColor(Color.RED); // 빨간색 설정
                         newPolyline.setMap(naverMap);
                         polylines.add(newPolyline);
                         currentPolylineWrapper.value = newPolyline;

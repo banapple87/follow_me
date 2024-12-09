@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#0000FF</color>
     <color name="red">#FF0000</color>
+    <color name="primaryColor">#6A24FE</color>
+    <color name="primaryDarkColor">#6A24FE</color> <!-- 어두운 버전으로 사용 -->
+    <color name="accentColor">#6A24FE</color>
 </resources>
