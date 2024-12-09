@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#FFFFFF">
+
+    <!-- 회원가입 제목 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textColor="#6A24FE"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:gravity="start"/>
+
+    <!-- 이름 입력 필드 -->
+    <EditText
+        android:id="@+id/name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#D0D2D2"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- 나이 입력 필드 -->
+    <EditText
+        android:id="@+id/age_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#D0D2D2"
+        android:layout_marginBottom="12dp"
+        android:inputType="number"/>
+
+    <!-- 아이디 입력 필드 -->
+    <EditText
+        android:id="@+id/username_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#D0D2D2"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- 비밀번호 입력 필드 -->
+    <EditText
+        android:id="@+id/password_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="PW"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#D0D2D2"
+        android:layout_marginBottom="20dp"
+        android:inputType="textPassword"/>
+
+    <!-- 회원가입 버튼 -->
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Register"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#6A24FE"
+        android:layout_marginBottom="12dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"/>
+
+</LinearLayout>

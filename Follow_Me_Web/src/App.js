@@ -6,6 +6,7 @@ import SelectInfo from './components/SelectInfo';
 import SelectCategory from './components/SelectCategory';
 import ClothSelect from './components/ClothSelect';
 import BrandFilter from './components/BrandFilter';
+import EtcSearch from './components/EtcSearch';
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
           <Route path="/select/select_info" element={<SelectInfo />} />
           <Route path="/select/select_category" element={<SelectCategory />} />
           <Route path="/select/cloth_select" element={<ClothSelect />} />
-          <Route path="/select/filter_brands" element={<BrandFilter />} />
+          <Route path="/select/BrandFilter" element={<BrandFilter />} />
+          <Route path="/select/etcsearch" element={<EtcSearch />} />
         </Routes>
       </Router>
     </CustomerProvider>
