@@ -3,6 +3,8 @@ package com.example.follow_me;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.overlay.Marker;
@@ -41,6 +43,15 @@ public class FloorManager {
             marker.setCaptionTextSize(12);
             marker.setMap(naverMap);
             markers.add(marker);
+
+            // 마커 클릭 리스너 설정
+            marker.setOnClickListener(overlay -> {
+                Toast.makeText(context, caption + " 방문 완료!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, caption + " marker clicked");
+                ((MainActivity) context).markStoreAsVisited(caption);
+                return true; // 이벤트 소비
+            });
+
             Log.d(TAG, "Marker added at: " + coord.toString());
         });
     }
@@ -177,6 +188,14 @@ public class FloorManager {
             mapMarker.setCaptionTextSize(12);
             mapMarker.setMap(naverMap);
             markers.add(mapMarker);
+
+            // 마커 클릭 리스너 설정
+            mapMarker.setOnClickListener(overlay -> {
+                Toast.makeText(context, marker.getBrandName() + " 방문 완료!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, marker.getBrandName() + " marker clicked");
+                ((MainActivity) context).markStoreAsVisited(marker.getBrandName());
+                return true; // 이벤트 소비
+            });
         }
     }
 }
