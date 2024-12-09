@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.select-info-header h1 {
+  background-color: #C6F05A;         
+  padding: 30px 60px;
+  margin-bottom: 50px;
+  border: none;
+  border-radius: 20px;
+  font-size: 3rem;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.select-info-header h2 {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 50px; 
+}
+
+label {
+  font-size: 1.8rem;
+}
+
+.radio-group label {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-gender {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.form-ages {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+select {
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 200px;
+}
+
+.dropdown-group select {
+  min-width: 220px;
+  height: 50px;
+  display: flex;
+  gap: 10px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #C6F05A;
+  color: rgb(73, 73, 73);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+.submit-button:hover {
+  background-color: #ddd;
+}
