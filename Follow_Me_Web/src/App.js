@@ -16,7 +16,7 @@ const App = () => {
           <Route path="/select/select_info" element={<SelectInfo />} />
           <Route path="/select/select_category" element={<SelectCategory />} />
           <Route path="/select/cloth_select" element={<ClothSelect />} />
-          <Route path="/select/BrandFilter" element={<BrandFilter />} />
+          <Route path="/select/filter_brands" element={<BrandFilter />} />
         </Routes>
       </Router>
     </CustomerProvider>
