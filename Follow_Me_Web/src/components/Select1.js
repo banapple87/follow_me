@@ -10,7 +10,7 @@ const Select1 = () => {
   };
 
   const handleSearchClick = () => {
-    alert('현재 이 기능은 사용할 수 없습니다.'); 
+    navigate('/select/etcsearch'); 
   };
 
   return (
