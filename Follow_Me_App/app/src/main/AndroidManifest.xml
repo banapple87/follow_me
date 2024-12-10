@@ -37,7 +37,11 @@
             android:exported="true"
             android:theme="@style/Theme.FollowMe" />
 
-        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity android:name=".SelectionActivity" />
 
         <!-- 네이버 지도 API 키 설정 -->
         <meta-data

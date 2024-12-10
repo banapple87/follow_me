@@ -36,6 +36,12 @@ public class FloorManager {
             return;
         }
 
+        // "Current Location" 마커는 표시하지 않음
+        if ("Current Location".equals(caption)) {
+            Log.d(TAG, "Skipping Current Location marker");
+            return;
+        }
+
         ((MainActivity) context).runOnUiThread(() -> {
             Marker marker = new Marker();
             marker.setPosition(coord);
@@ -55,6 +61,7 @@ public class FloorManager {
             Log.d(TAG, "Marker added at: " + coord.toString());
         });
     }
+
 
     public void updateMapForFloor(int currentFloor, NaverMap naverMap) {
         clearMarkersAndPolylines();
@@ -156,7 +163,7 @@ public class FloorManager {
                 }
 
                 try {
-                    Thread.sleep(5); // 애니메이션 딜레이
+                    Thread.sleep(1); // 애니메이션 딜레이
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Animation interrupted", e);
                 }
