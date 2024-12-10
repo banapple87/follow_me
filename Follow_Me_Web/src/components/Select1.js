@@ -32,17 +32,17 @@ const Select1 = () => {
       <img src = {`${process.env.PUBLIC_URL}/main_logo.png`} alt="logo" className="main-logo" />
       
       <div className='button'>
-      <img 
-          src={`${process.env.PUBLIC_URL}/shop_icon.png`} 
-          alt="쇼핑 버튼" 
-          className="shopping-button" 
-          onClick={handleShopClick} 
-        />
         <img 
           src={`${process.env.PUBLIC_URL}/etc_icon.png`} 
           alt="기타시설 검색 버튼" 
           className="search-button" 
           onClick={handleSearchClick} 
+        />
+        <img 
+          src={`${process.env.PUBLIC_URL}/shop_icon.png`} 
+          alt="쇼핑 버튼" 
+          className="shopping-button" 
+          onClick={handleShopClick} 
         />
       </div>
     </div>

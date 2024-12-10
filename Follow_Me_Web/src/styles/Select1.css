@@ -4,25 +4,32 @@
   padding: 20px;
 }
 
-.top-image {
+.main-logo {
   position: absolute;
-  top: 20px; /* 상단에서 20px 떨어지도록 설정 */
+  top: 30%;
   left: 50%;
-  transform: translateX(-50%); /* 가로 중앙 정렬 */
-  width: 200px; /* 이미지 크기 설정 */
-  height: auto; /* 비율 유지 */
-  z-index: 10; /* 다른 요소들이 위로 올라가지 않도록 설정 */
+  transform: translateX(-50%);
+  width: 800px;
+  height: auto;
+  z-index: 10;
 }
 
 .button {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
+  margin-top: 200px;
 }
-.shopping-button,
-.search-button {    
-  padding: 5px 15px;
-  margin: 10px 0;
+
+.button img {
   cursor: pointer;
-  white-space: nowrap;
+  width: 150px;
+  height: auto;
+  background-color: transparent;
+  transition: transform 0.2s ease;
+}
+
+.button img:hover {
+  background-color: transparent;
+  transform: scale(1.1);
 }
