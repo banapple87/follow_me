@@ -49,9 +49,15 @@ const ClothSelect = () => {
     try {
       console.log('Submitting styles:', selectedStyles);
       await axios.patch(`http://localhost:5000/user_selections/${id}`, { style:selectedStyles });
-      navigate('/select/BrandFilter', {
-        state: { gender, ages, category, styles: selectedStyles },
+      
+      const response = await axios.post('http://localhost:5000/filter_brands', {
+        gender,
+        ages,
+        category,
+        style: selectedStyles,
       });
+
+      navigate('/select/filter_brands', { state: response.data });
     } catch (error) {
       console.error('Error submitting styles:', error);
       setLoading(false);
