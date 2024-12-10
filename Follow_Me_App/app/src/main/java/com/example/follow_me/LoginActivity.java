@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         runOnUiThread(() -> {
                             Toast.makeText(LoginActivity.this, name + "님, 안녕하세요!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, SelectionActivity.class));
                             finish();
                         });
                     } catch (Exception e) {
