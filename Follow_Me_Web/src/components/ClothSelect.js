@@ -30,10 +30,10 @@ const ClothSelect = () => {
   const handleCheckboxChange = (style) => {
     if (selectedStyles.includes(style)) {
       setSelectedStyles(selectedStyles.filter((s) => s !== style)); // 선택 해제
-    } else if (selectedStyles.length < 3) {
-      setSelectedStyles([...selectedStyles, style]); // 최대 3개까지 선택
+    } else if (selectedStyles.length < 2) {
+      setSelectedStyles([...selectedStyles, style]);
     } else {
-      alert('최대 3개까지 선택 가능합니다.'); // 초과 시 경고 메시지
+      alert('최대 2개까지 선택 가능합니다.'); // 초과 시 경고 메시지
     }
   };
 
