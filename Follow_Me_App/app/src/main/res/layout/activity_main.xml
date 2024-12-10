@@ -10,9 +10,9 @@
 
     <Button
         android:id="@+id/calculate_path_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculate Path"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:text="Calc"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp" />

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,6 +37,18 @@ public class LoginActivity extends AppCompatActivity {
             .connectTimeout(10, TimeUnit.SECONDS) // 연결 타임아웃
             .readTimeout(10, TimeUnit.SECONDS)    // 읽기 타임아웃
             .build();
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v != null) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,14 +131,26 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String responseBody = response.body().string();
                     Log.d(TAG, "응답: " + responseBody);
-                    runOnUiThread(() -> {
-                        Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                    });
+
+                    try {
+                        JSONObject jsonResponse = new JSONObject(responseBody);
+                        JSONObject user = jsonResponse.getJSONObject("user");
+                        String name = user.getString("name");
+
+                        runOnUiThread(() -> {
+                            Toast.makeText(LoginActivity.this, name + "님, 안녕하세요!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                        });
+                    } catch (Exception e) {
+                        Log.e(TAG, "JSON 파싱 오류", e);
+                        runOnUiThread(() ->
+                                Toast.makeText(LoginActivity.this, "응답 데이터 오류", Toast.LENGTH_SHORT).show()
+                        );
+                    }
                 } else {
                     runOnUiThread(() ->
-                            Toast.makeText(LoginActivity.this, "로그인 실패: 아이디 또는 비밀번호 오류", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호가 잘못되었습니다.", Toast.LENGTH_SHORT).show()
                     );
                 }
             }
