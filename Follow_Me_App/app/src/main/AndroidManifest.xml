@@ -43,6 +43,8 @@
 
         <activity android:name=".SelectionActivity" />
 
+        <activity android:name=".CategorySelectionActivity" />
+
         <!-- 네이버 지도 API 키 설정 -->
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
