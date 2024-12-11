@@ -11,7 +11,7 @@ const SelectInfo = () => {
   const [loading, setLoading] = useState(false);
 
   const containerStyle = {
-    backgroundImage: `url(/background.png)`,
+    backgroundImage: `url(/background_2.png)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -24,6 +24,9 @@ const SelectInfo = () => {
     padding: '20px'
   };
 
+  const handleGenderClick = (selectedGender) => {
+    setGender(selectedGender);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault(); // 기본 폼 제출 방지
     setLoading(true);
@@ -56,23 +59,25 @@ const SelectInfo = () => {
       <main className="select-info-form">
         <form>
           <div className="form-gender">
-            <label>성별</label>
-            <div className="radio-group">
-              <label>
-                <input type="radio" name="gender" value="여성"
-                onChange={(e) => setGender(e.target.value)} />
+            <div className="button-group">
+              <button
+                type="button"
+                className={`gender-button ${gender === '여성' ? 'active' : ''}`}
+                onClick={() => handleGenderClick('여성')}
+              >
                 여성
-              </label>
-              <label>
-                <input type="radio" name="gender" value="남성"
-                onChange={(e) => setGender(e.target.value)} />
+              </button>
+              <button
+                type="button"
+                className={`gender-button ${gender === '남성' ? 'active' : ''}`}
+                onClick={() => handleGenderClick('남성')}
+              >
                 남성
-              </label>
+              </button>
             </div>
           </div>
 
           <div className="form-ages">
-            <label>나이</label>
             <div className="dropdown-group">
               <select onChange={(e) => setAges(e.target.value)}>
                 <option value="">연령대 선택</option>
