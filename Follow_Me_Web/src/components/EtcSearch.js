@@ -27,7 +27,7 @@ const EtcSearch = () => {
 
   return (
     <div style={containerStyle} className="container">
-      <h1>기타시설 검색</h1>
+      <h1 className="header-title">기타시설 검색</h1>
       <div className="separator"></div>
 
     
@@ -41,8 +41,7 @@ const EtcSearch = () => {
           type="button"
           className="search-button"
           onClick={handleSearchClick}
-        >
-          검색
+        > 🔍︎
         </button>
       </div>
 
