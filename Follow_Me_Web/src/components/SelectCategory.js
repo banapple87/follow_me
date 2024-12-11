@@ -8,6 +8,20 @@ const SelectCategory = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const containerStyle = {
+    backgroundImage: `url(/background.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: '20px'
+  };
+
   const { id, gender, ages } = location.state || {};
 
   const navigateToNextPage = (selectedCategory) => {
@@ -50,7 +64,7 @@ const SelectCategory = () => {
   };
 
   return (
-    <div className="container">
+    <div style={containerStyle} className="container">
       <h2>카테고리를 선택해주세요</h2>
       <div className="separator"></div>
       <div className="button-group">
