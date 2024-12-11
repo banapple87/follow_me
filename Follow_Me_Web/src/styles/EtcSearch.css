@@ -1,4 +1,4 @@
-/* 전체 컨테이너 스타일 */
+
 .container {
   display: flex;
   flex-direction: column;
@@ -12,25 +12,26 @@
   text-align: center;
 }
 
-/* 헤더 스타일 */
-h1 {
-  font-size: 2.5rem;
-  background-color: rgba(50, 50, 50, 0.7);
-  padding: 15px 40px;
-  border-radius: 0;
+
+h1.header-title {
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 100;
+  font-size: 3.0em !important; 
+  padding: 10px 20px;
+  border-radius: 0 ;
   color: #ffffff;
   margin-bottom: 20px;
 }
 
-/* 구분선 스타일 */
+
 .separator {
-  width: 60px;
-  height: 2px;
+  width: 300px;
+  height: 1px;
   background-color: #ffffff;
   margin-bottom: 30px;
 }
 
-/* 검색 입력 컨테이너 */
+
 .search-input-container {
   display: flex;
   align-items: center;
@@ -40,7 +41,7 @@ h1 {
   margin-bottom: 30px;
 }
 
-/* 입력 필드 스타일 */
+
 .search-input {
   width: 100%;
   padding: 12px 15px;
@@ -50,14 +51,15 @@ h1 {
   outline: none;
 }
 
-/* 검색 버튼 스타일 */
+
 .search-button {
-  padding: 1px 30px;
-  background-color: #4d3c35;
+  padding: 3.9px 20px;
+  background-color: #594d48;
   color: #ffffff;
-  border: 2px solid #4d3c35;
-  font-size: 1rem;
+  border: 2px solid #594d48;
+  font-size: 1.6rem;
   cursor: pointer;
+
   border-radius: 0;
 }
 
@@ -65,13 +67,17 @@ h1 {
   background-color: #3b2e29;
 }
 
-/* 자주 찾는 검색어 섹션 */
+
 h2 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
+  font-family: "Nanum Gothic", sans-serif;
+  font-weight: 100;
+  font-size: 1.5em !important; 
+  color: #EEEEEE;
+  margin-bottom: 20px;
+
 }
 
-/* 버튼 그룹 스타일 */
+
 .button-group {
   display: flex;
   gap: 10px;
@@ -79,12 +85,12 @@ h2 {
   justify-content: center;
 }
 
-/* 각 카테고리 버튼 스타일 */
+
 .add-button {
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  padding: 10px 20px;
-  border: 2px solid #ffffff;
+  padding: 10px 40px;
+  border: 1px solid #ffffff;
   border-radius: 0;
   cursor: pointer;
   font-size: 1rem;

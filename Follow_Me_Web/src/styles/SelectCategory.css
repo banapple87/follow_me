@@ -12,7 +12,7 @@
 /* 제목 스타일 */
 .container h2 {
   font-size: 2.5rem; /* 제목 크기 */
-  color: #333;
+  color: white;
   font-weight: bold;
   margin-bottom: 20px;
   display: flex;
@@ -70,23 +70,4 @@
   gap: 15px;
   margin-top: 20px;
   width: 80%;  /* 전체 컨테이너 너비 */
-}
-
-/* 반응형 디자인 (모바일) */
-@media (max-width: 768px) {
-  /* 모바일에서 제목 크기 조정 */
-  .container h2 {
-    font-size: 1.8rem;
-  }
-
-  /* 모바일에서 버튼 너비를 더 좁게 */
-  .category-button {
-    width: 100%;  /* 한 줄에 한 개씩 배치 */
-    padding: 15px;
-    font-size: 1rem;
-  }
-
-  .category-container {
-    grid-template-columns: 1fr;  /* 모바일에서는 1열로 배치 */
-  }
 }

@@ -26,40 +26,45 @@
 /* 스타일 버튼 컨테이너 */
 .style-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 처음 2개는 한 줄에 2개씩 */
+  grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개씩 배치 */
   grid-template-rows: repeat(4, auto); /* 4개의 행에 배치 */
-  gap: 15px;
+  gap: 20px; /* 버튼 간격을 조금 더 넓게 설정 */
   justify-items: center;
   margin-bottom: 20px;
+  width: 80%; /* 가로 폭을 80%로 맞춰줌 */
   position: relative;
   z-index: 1; /* 배경 위로 표시 */
 }
 
-/* 버튼 스타일 */
+/* 스타일 버튼 */
 .style-tag {
   background-color: rgba(169, 169, 169, 0.5); /* 회색 반투명 배경 */
   color: #333;
   border: none;
   border-radius: 5px;
-  padding: 15px 20px; /* 텍스트와 버튼 사이의 여백 */
-  font-size: 1rem;
+  padding: 15px 30px; /* 텍스트와 버튼 사이의 여백을 넓게 설정 */
+  font-size: 1rem; /* 글자 크기 */
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   text-align: center;
-  min-width: 150px; /* 최소 너비를 일정하게 고정 */
-  height: 50px; /* 버튼의 높이를 일정하게 고정 */
+  width: auto; /* 버튼의 너비를 텍스트에 맞게 자동으로 조정 */
+  min-width: 200px; /* 버튼의 최소 너비를 200px로 설정 */
+  height: 60px; /* 버튼 높이 동일하게 설정 */
   display: flex;
   align-items: center;
   justify-content: center;
   text-overflow: ellipsis; /* 텍스트가 길어지면 '...'로 처리 */
+  word-wrap: break-word; /* 긴 단어가 있을 경우 자동으로 줄바꿈 */
 }
 
+/* 버튼 hover 상태 */
 .style-tag:hover {
   background-color: rgba(169, 169, 169, 0.7); /* hover 시 배경이 조금 더 어두워짐 */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* 선택된 버튼 스타일 */
 .style-tag.selected {
   background-color: #333; /* 선택된 버튼은 어두운 배경 */
   color: #fff; /* 흰색 텍스트 */
@@ -100,7 +105,7 @@
   .style-tag {
     padding: 10px 20px;
     font-size: 0.9rem;
-    min-width: 100px;
+    min-width: 150px;
     height: 40px; /* 모바일에서 버튼 높이를 조금 낮춤 */
   }
 
@@ -109,11 +114,17 @@
     font-size: 0.9rem;
   }
 
-  /* 2개씩, 3개씩 배치되는 구조에서 작은 화면에서는 한 열에 하나씩 배치되도록 */
+  /* 작은 화면에서 한 열에 하나씩 배치 */
   .style-container {
     grid-template-columns: 1fr;
+    width: 100%; /* 작은 화면에서는 가로 폭을 100%로 설정 */
   }
 }
+
+
+
+
+
 
 
 

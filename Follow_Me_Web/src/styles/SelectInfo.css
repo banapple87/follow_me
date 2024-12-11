@@ -12,7 +12,7 @@
   color: white;
   text-align: center;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-bottom: 30px;
   position: relative;
 }
@@ -22,30 +22,27 @@
   width: 50%;
   margin: 0 auto;
 }
-.separator {
-  border-top: 1px solid white;
-  width: 100%;
-  margin: 20px auto;
-  display: block;
-}
-
-label {
-  font-size: 1.8rem;
+.gender-button {
+  padding: 20px 100px;
+  margin: 0 10px;
+  border: 1px solid white;
+  border-radius: 2px;
+  background-color: #f5f5f567;
   color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.radio-group {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
+.gender-button.active {
+  transform: scale(1.1);
+  background-color: #f5f5f567;
+  color: white;
+  font-weight: bold;
 }
-
-.radio-group label {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.gender-button:hover {
+  background-color: #e4e4e4b4;
 }
 
 .form-gender {
