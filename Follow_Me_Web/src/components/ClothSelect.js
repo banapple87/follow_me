@@ -25,15 +25,27 @@ const ClothSelect = () => {
   const [selectedStyles, setSelectedStyles] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id, gender, ages, category } = location.state || {};
-
+  const containerStyle = {
+    backgroundImage: `url(/background.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: '20px'
+  };
   // 체크박스 선택 핸들러
   const handleTagClick = (style) => {
     if (selectedStyles.includes(style)) {
       setSelectedStyles(selectedStyles.filter((s) => s !== style)); // 선택 해제
-    } else if (selectedStyles.length < 3) {
+    } else if (selectedStyles.length < 2) {
       setSelectedStyles([...selectedStyles, style]); // 추가
     } else {
-      alert('최대 3개까지 선택 가능합니다.'); // 초과 시 경고 메시지
+      alert('최대 2개까지 선택 가능합니다.'); // 초과 시 경고 메시지
     }
   };
 
@@ -62,7 +74,7 @@ const ClothSelect = () => {
   };
 
   return (
-    <div className="container">
+    <div style={containerStyle} className="container">
       <div className="background-image">
         <h4 className="title">스타일 선택</h4>
         <form onSubmit={handleSubmit}>
