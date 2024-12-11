@@ -3,13 +3,17 @@ package com.example.follow_me;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.MotionEvent;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONObject;
@@ -32,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText passwordEditText;
     private Button loginButton;
     private Button registerButton;
+    private LinearLayout loginElementsContainer;
+    private LinearLayout textContainer;
 
     private final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS) // 연결 타임아웃
@@ -64,19 +70,49 @@ public class LoginActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.username_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         loginButton = findViewById(R.id.login_button);
-        registerButton = findViewById(R.id.register_button); // 회원가입 버튼
+        registerButton = findViewById(R.id.register_button);
+        loginElementsContainer = findViewById(R.id.login_elements_container);
+        textContainer = findViewById(R.id.text_container);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptLogin();
-            }
-        });
+        // 초기 상태 설정
+        loginElementsContainer.setVisibility(View.INVISIBLE);
+        textContainer.setVisibility(View.INVISIBLE);
 
-        // 회원가입 버튼 클릭 시 RegisterActivity로 이동
+        // 페이드 인 애니메이션
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        textContainer.startAnimation(fadeIn);
+
+        // 텍스트 컨테이너에 페이드 아웃 애니메이션 적용 후 로그인 요소 보이기
+        new Handler().postDelayed(() -> {
+            Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+            textContainer.startAnimation(fadeOut);
+
+            // 페이드 아웃 애니메이션이 끝난 후 로그인 요소 보이기
+            fadeOut.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {}
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    textContainer.setVisibility(View.GONE);
+                    loginElementsContainer.setVisibility(View.VISIBLE);
+                    loginElementsContainer.startAnimation(fadeIn);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {}
+            });
+
+        }, 2000); // 2초 동안 텍스트 표시 후 애니메이션 실행
+
+        // 로그인 버튼 클릭 리스너
+        loginButton.setOnClickListener(v -> attemptLogin());
+
+        // 회원가입 버튼 클릭 리스너
         registerButton.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
+            overridePendingTransition(0, 0);
         });
     }
 
@@ -141,6 +177,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, name + "님, 안녕하세요!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, SelectionActivity.class));
                             finish();
+                            overridePendingTransition(0, 0);
                         });
                     } catch (Exception e) {
                         Log.e(TAG, "JSON 파싱 오류", e);

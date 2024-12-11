@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
@@ -18,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SelectionActivity extends AppCompatActivity {
 
     private LinearLayout shoppingIcon;
+    private LinearLayout iconContainer;
     private ImageView maleIcon, femaleIcon;
     private NumberPicker agePicker;
     private String selectedGender = ""; // 선택된 성별을 저장할 변수
@@ -30,6 +33,10 @@ public class SelectionActivity extends AppCompatActivity {
         HorizontalScrollView horizontalScrollView = findViewById(R.id.horizontal_scroll);
         LinearLayout iconLayout = findViewById(R.id.icon_layout);
         shoppingIcon = findViewById(R.id.shopping_icon);
+        iconContainer = findViewById(R.id.icon_container);
+
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        iconContainer.startAnimation(fadeIn);
 
         horizontalScrollView.post(() -> {
             int centerX = (iconLayout.getWidth() - horizontalScrollView.getWidth()) / 2;

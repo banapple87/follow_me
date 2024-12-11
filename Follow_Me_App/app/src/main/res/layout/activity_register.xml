@@ -18,6 +18,7 @@
         android:background="#AA000000" />
 
     <LinearLayout
+        android:id="@+id/register_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
