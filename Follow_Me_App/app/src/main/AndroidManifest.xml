@@ -33,6 +33,7 @@
 
         <activity
             android:name=".RegisterActivity"
+            android:exported="true"
             android:windowSoftInputMode="adjustPan"/>
 
         <!-- MainActivity 설정 -->
@@ -41,9 +42,17 @@
             android:exported="true"
             android:theme="@style/Theme.FollowMe" />
 
-        <activity android:name=".SelectionActivity" />
+        <activity
+            android:name=".SelectionActivity"
+            android:exported="true" />
 
-        <activity android:name=".CategorySelectionActivity" />
+        <activity
+            android:name=".CategorySelectionActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".StyleSelectionActivity"
+            android:exported="true" />
 
         <!-- 네이버 지도 API 키 설정 -->
         <meta-data

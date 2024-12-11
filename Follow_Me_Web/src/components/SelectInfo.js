@@ -12,7 +12,7 @@ const SelectInfo = () => {
 
   const containerStyle = {
     backgroundImage: `url(/background.png)`,
-    backgroundSize: 'auto',
+    backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     height: '100vh',
@@ -24,6 +24,9 @@ const SelectInfo = () => {
     padding: '20px'
   };
 
+  const handleGenderClick = (selectedGender) => {
+    setGender(selectedGender);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault(); // 기본 폼 제출 방지
     setLoading(true);
@@ -49,7 +52,6 @@ const SelectInfo = () => {
 
   return (
     <div style={containerStyle} className="select-info-container">
-      <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="logo" className="logo" />
       <header className="select-info-header">
         <h2>쇼핑 정보 입력</h2>
       </header>
@@ -57,23 +59,25 @@ const SelectInfo = () => {
       <main className="select-info-form">
         <form>
           <div className="form-gender">
-            <label>성별</label>
-            <div className="radio-group">
-              <label>
-                <input type="radio" name="gender" value="여성"
-                onChange={(e) => setGender(e.target.value)} />
+            <div className="button-group">
+              <button
+                type="button"
+                className={`gender-button ${gender === '여성' ? 'active' : ''}`}
+                onClick={() => handleGenderClick('여성')}
+              >
                 여성
-              </label>
-              <label>
-                <input type="radio" name="gender" value="남성"
-                onChange={(e) => setGender(e.target.value)} />
+              </button>
+              <button
+                type="button"
+                className={`gender-button ${gender === '남성' ? 'active' : ''}`}
+                onClick={() => handleGenderClick('남성')}
+              >
                 남성
-              </label>
+              </button>
             </div>
           </div>
 
           <div className="form-ages">
-            <label>나이</label>
             <div className="dropdown-group">
               <select onChange={(e) => setAges(e.target.value)}>
                 <option value="">연령대 선택</option>
