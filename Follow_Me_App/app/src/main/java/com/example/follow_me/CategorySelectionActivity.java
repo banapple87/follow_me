@@ -17,6 +17,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
 
         ImageButton backButton = findViewById(R.id.back_button);
         ImageButton homeButton = findViewById(R.id.home_button);
+        Button clothingButton = findViewById(R.id.clothing_button);
 
         // 뒤로 가기 버튼 클릭 리스너
         backButton.setOnClickListener(v -> {
@@ -31,6 +32,12 @@ public class CategorySelectionActivity extends AppCompatActivity {
             Intent intent = new Intent(CategorySelectionActivity.this, SelectionActivity.class);
             startActivity(intent);
             finish();
+        });
+        // 의류 버튼 클릭 리스너
+        clothingButton.setOnClickListener(v -> {
+            Intent intent = new Intent(CategorySelectionActivity.this, StyleSelectionActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
         });
     }
 }
