@@ -1,6 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5"
+    android:fitsSystemWindows="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 헤더 레이아웃 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="start"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Back"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back" />
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_home"
+            android:scaleType="fitCenter"
+            android:contentDescription="Home"/>
+    </LinearLayout>
+
+    <!-- 타이틀 텍스트 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="스타일을 선택해 주세요."
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:textStyle="bold"/>
+
+    <!-- 구분선 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BDBDBD"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 해시태그 버튼들 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <GridLayout
+            android:id="@+id/hashTagGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/btn1"
+                style="@style/HashTagButton"
+                android:text="#격식있는"/>
+
+            <Button
+                android:id="@+id/btn2"
+                style="@style/HashTagButton"
+                android:text="#트렌디한"/>
+
+            <Button
+                android:id="@+id/btn3"
+                style="@style/HashTagButton"
+                android:text="#러블리한"/>
+
+            <Button
+                android:id="@+id/btn4"
+                style="@style/HashTagButton"
+                android:text="#깔끔한"/>
+
+            <Button
+                android:id="@+id/btn5"
+                style="@style/HashTagButton"
+                android:text="#스포티한"/>
+
+            <Button
+                android:id="@+id/btn6"
+                style="@style/HashTagButton"
+                android:text="#일상적인"/>
+
+            <Button
+                android:id="@+id/btn7"
+                style="@style/HashTagButton"
+                android:text="#편한"/>
+
+            <Button
+                android:id="@+id/btn8"
+                style="@style/HashTagButton"
+                android:text="#힙한"/>
+
+            <Button
+                android:id="@+id/btn9"
+                style="@style/HashTagButton"
+                android:text="#골프웨어"/>
+
+            <Button
+                android:id="@+id/btn10"
+                style="@style/HashTagButton"
+                android:text="#아웃도어"/>
+
+            <Button
+                android:id="@+id/btn11"
+                style="@style/HashTagButton"
+                android:text="#고급스러운"/>
+
+            <Button
+                android:id="@+id/btn12"
+                style="@style/HashTagButton"
+                android:text="#시크한"/>
+
+            <Button
+                android:id="@+id/btn13"
+                style="@style/HashTagButton"
+                android:text="#비지니스 캐주얼"/>
+        </GridLayout>
+    </ScrollView>
+</LinearLayout>
