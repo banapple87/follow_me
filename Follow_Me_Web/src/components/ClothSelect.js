@@ -18,22 +18,25 @@ const styleOptions = [
   { label: '골프웨어', value: '골프웨어' },
   { label: '아웃도어', value: '아웃도어' },
 ];
+
 const ClothSelect = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedStyles, setSelectedStyles] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id, gender, ages, category } = location.state || {};
+
   // 체크박스 선택 핸들러
   const handleTagClick = (style) => {
     if (selectedStyles.includes(style)) {
       setSelectedStyles(selectedStyles.filter((s) => s !== style)); // 선택 해제
     } else if (selectedStyles.length < 3) {
-      setSelectedStyles([...selectedStyles, style]); // 최대 3개까지 선택
+      setSelectedStyles([...selectedStyles, style]); // 추가
     } else {
-      alert('최대 3개까지 선택 가능합니다.');
+      alert('최대 3개까지 선택 가능합니다.'); // 초과 시 경고 메시지
     }
   };
+
   // 폼 제출 핸들러
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +46,6 @@ const ClothSelect = () => {
     }
     setLoading(true);
     try {
-      console.log('Submitting styles:', selectedStyles);
       await axios.patch(`http://localhost:5000/user_selections/${id}`, { style: selectedStyles });
       const response = await axios.post('http://localhost:5000/filter_brands', {
         gender,
@@ -58,27 +60,31 @@ const ClothSelect = () => {
       setLoading(false);
     }
   };
+
   return (
     <div className="container">
-      <h4 className="title">스타일을 선택해주세요</h4>
-      <form onSubmit={handleSubmit}>
-        <div className="style-container">
-          {styleOptions.map(({ label, value }) => (
-            <button
-              key={value}
-              type="button"
-              className={`style-tag ${selectedStyles.includes(value) ? 'selected' : ''}`}
-              onClick={() => handleTagClick(value)}
-            >
-              #{label}
-            </button>
-          ))}
-        </div>
-        <button type="submit" className="submit-button">
-          {loading ? '저장 중...' : '다음으로'}
-        </button>
-      </form>
+      <div className="background-image">
+        <h4 className="title">스타일 선택</h4>
+        <form onSubmit={handleSubmit}>
+          <div className="style-container">
+            {styleOptions.map(({ label, value }) => (
+              <button
+                key={value}
+                type="button"
+                className={`style-tag ${selectedStyles.includes(value) ? 'selected' : ''}`}
+                onClick={() => handleTagClick(value)}
+              >
+                #{label}
+              </button>
+            ))}
+          </div>
+          <button type="submit" className="submit-button" disabled={loading}>
+            {loading ? '저장 중...' : '다음으로'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
+
 export default ClothSelect;

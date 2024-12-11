@@ -1,10 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Select1.css'
+import '../styles/Select1.css';
 
 const Select1 = () => {
   const navigate = useNavigate();
   
+  const containerStyle = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}/background.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: '20px'
+  };
+
   const handleShopClick = () => {
     navigate('/select/select_info');
   };
@@ -14,28 +28,23 @@ const Select1 = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Follow Me</h1>
-      <h2>쇼핑의 즐거움을 공유하다.</h2>
-      <h3>프리미엄 아울렛 동부산점</h3>
+    <div style={containerStyle} className="container">
+      <img src = {`${process.env.PUBLIC_URL}/main_logo.png`} alt="logo" className="main-logo" />
       
       <div className='button'>
-      <button
-        type="button"
-        className="shopping-button"
-        onClick={handleShopClick}
-      >
-        쇼핑
-      </button>
-      <button
-        type="button"
-        className="search-button"
-        onClick={handleSearchClick}
-      >
-        기타시설 검색
-      </button>
+        <img 
+          src={`${process.env.PUBLIC_URL}/etc_icon.png`} 
+          alt="기타시설 검색 버튼" 
+          className="search-button" 
+          onClick={handleSearchClick} 
+        />
+        <img 
+          src={`${process.env.PUBLIC_URL}/shop_icon.png`} 
+          alt="쇼핑 버튼" 
+          className="shopping-button" 
+          onClick={handleShopClick} 
+        />
       </div>
-      
     </div>
   );
 };

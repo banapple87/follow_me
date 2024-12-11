@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,8 +31,21 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button registerButton;
+    private Button cancelButton;
 
     private final OkHttpClient client = new OkHttpClient();
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v != null) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.username_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         registerButton = findViewById(R.id.register_button);
+        cancelButton = findViewById(R.id.cancel_button); // Cancel 버튼 초기화
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +71,9 @@ public class RegisterActivity extends AppCompatActivity {
                 attemptRegister();
             }
         });
+
+        // Cancel 버튼 클릭 리스너
+        cancelButton.setOnClickListener(v -> finish()); // 현재 액티비티를 종료하고 이전 화면으로 돌아감
     }
 
     private void attemptRegister() {
