@@ -12,7 +12,7 @@ const SelectInfo = () => {
 
   const containerStyle = {
     backgroundImage: `url(/background.png)`,
-    backgroundSize: 'auto',
+    backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     height: '100vh',
@@ -49,7 +49,6 @@ const SelectInfo = () => {
 
   return (
     <div style={containerStyle} className="select-info-container">
-      <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="logo" className="logo" />
       <header className="select-info-header">
         <h2>쇼핑 정보 입력</h2>
       </header>
