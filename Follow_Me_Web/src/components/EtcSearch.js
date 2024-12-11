@@ -2,6 +2,19 @@ import React from "react";
 import '../styles/EtcSearch.css'
 
 const EtcSearch = () => {
+  const containerStyle = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}/background.png)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: '20px'
+  };
 
   const handleSearchClick = () => {
     alert("검색 버튼이 클릭되었습니다.");
@@ -13,7 +26,7 @@ const EtcSearch = () => {
   };
 
   return (
-    <div className="container">
+    <div style={containerStyle} className="container">
       <h1>기타시설 검색</h1>
       <div className="separator"></div>
 
