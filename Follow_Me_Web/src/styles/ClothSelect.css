@@ -60,7 +60,7 @@
 }
 
 .style-tag.selected {
-  background-color: #ff9800;
+  background-color: #000000;
   color: #fff;
   font-weight: bold;
   transform: scale(1.1);
@@ -68,7 +68,7 @@
 
 /* 제출 버튼 스타일 */
 .submit-button {
-  background-color: #ff9800;
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -79,7 +79,7 @@
 }
 
 .submit-button:hover {
-  background-color: #e68900;
+  background-color: #000000;
 }
 
 .submit-button:disabled {
