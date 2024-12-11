@@ -6,7 +6,7 @@ const Select1 = () => {
   const navigate = useNavigate();
   
   const containerStyle = {
-    backgroundImage: `url(${process.env.PUBLIC_URL}/background.png)`,
+    backgroundImage: `url(/background.png)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -29,7 +29,8 @@ const Select1 = () => {
 
   return (
     <div style={containerStyle} className="container">
-      <img src = {`${process.env.PUBLIC_URL}/main_logo.png`} alt="logo" className="main-logo" />
+      <h1>Follow Me</h1>
+      <h3>쇼핑의 즐거움을 공유하다.</h3>
       
       <div className='button'>
         <img 

@@ -1,13 +1,15 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import '../styles/BrandList.css';
 
 function BrandList() {
   const location = useLocation();
   const brands = location.state?.brands || [];
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className='container'>
       <h1>추천 리스트 생성</h1>
+      <div className="separator"></div>
       <div>
         {brands.length === 0 ? (
           <p>No brands found.</p>

@@ -45,10 +45,12 @@ const SelectCategory = () => {
       setLoading(false);
     }
   };
+  const handleGoHome = () => {
+    navigate('/');
+  };
 
   return (
     <div className="container">
-      <h1>Follow Me</h1>
       <h2>카테고리를 선택해주세요</h2>
       <div className="separator"></div>
       <div className="button-group">
@@ -95,6 +97,9 @@ const SelectCategory = () => {
           명품관
         </button>
       </div>
+      <button className="home-button" onClick={handleGoHome}>
+        Home
+      </button>
     </div>
   );
 };

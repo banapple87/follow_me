@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:background="@android:color/transparent">
 
+    <!-- 배경 이미지 -->
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
@@ -12,18 +15,48 @@
         android:scaleType="centerCrop"
         android:src="@drawable/background_image" />
 
+    <!-- 반투명 오버레이 -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#AA000000" />
 
+    <!-- 텍스트 컨테이너 -->
     <LinearLayout
+        android:id="@+id/text_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="쇼핑의 즐거움을 공유하다."
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FOLLOW ME"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- 로그인 컨테이너 -->
+    <LinearLayout
+        android:id="@+id/login_elements_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="24dp"
         android:layout_centerInParent="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="invisible">
 
         <TextView
             android:layout_width="match_parent"
@@ -56,6 +89,7 @@
             android:padding="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#D0D2D2"
+            android:layout_marginBottom="20dp"
             android:inputType="textPassword"/>
 
         <LinearLayout
@@ -92,9 +126,9 @@
             android:id="@+id/register_button"
             android:layout_width="wrap_content"
             android:layout_height="54dp"
-            android:layout_marginBottom="12dp"
             android:background="@android:color/transparent"
             android:text="Register"
             android:textColor="#FFFFFF" />
     </LinearLayout>
+
 </RelativeLayout>
