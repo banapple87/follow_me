@@ -11,7 +11,7 @@ const SelectInfo = () => {
   const [loading, setLoading] = useState(false);
 
   const containerStyle = {
-    backgroundImage: `url(/background_2.png)`,
+    backgroundImage: `url(/background.png)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
