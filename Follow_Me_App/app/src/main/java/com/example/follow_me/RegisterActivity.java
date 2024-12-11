@@ -4,11 +4,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONObject;
@@ -26,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
     private static final String REGISTER_URL = "http://10.104.24.229:5002/api/register";
 
+    private LinearLayout registerContainer;
     private EditText nameEditText;
     private EditText ageEditText;
     private EditText usernameEditText;
@@ -58,22 +62,24 @@ public class RegisterActivity extends AppCompatActivity {
             );
         }
 
+        registerContainer = findViewById(R.id.register_container);
+
+        // 애니메이션 적용
+        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
+        registerContainer.startAnimation(slideUp);
+
         nameEditText = findViewById(R.id.name_edit_text);
         ageEditText = findViewById(R.id.age_edit_text);
         usernameEditText = findViewById(R.id.username_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
         registerButton = findViewById(R.id.register_button);
-        cancelButton = findViewById(R.id.cancel_button); // Cancel 버튼 초기화
+        cancelButton = findViewById(R.id.cancel_button);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attemptRegister();
-            }
+        registerButton.setOnClickListener(v -> attemptRegister());
+        cancelButton.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(0, 0);
         });
-
-        // Cancel 버튼 클릭 리스너
-        cancelButton.setOnClickListener(v -> finish()); // 현재 액티비티를 종료하고 이전 화면으로 돌아감
     }
 
     private void attemptRegister() {
@@ -127,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     runOnUiThread(() -> {
                         Toast.makeText(RegisterActivity.this, "회원가입 성공!", Toast.LENGTH_SHORT).show();
-                        finish(); // 회원가입 후 로그인 화면으로 돌아감
+                        finish();
                     });
                 } else {
                     runOnUiThread(() ->

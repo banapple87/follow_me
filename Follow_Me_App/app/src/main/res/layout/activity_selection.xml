@@ -83,6 +83,7 @@
 
                 <!-- 쇼핑 아이콘 -->
                 <LinearLayout
+                    android:id="@+id/shopping_icon"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_margin="12dp"
