@@ -24,7 +24,7 @@ const ClothSelect = () => {
   const navigate = useNavigate();
   const [selectedStyles, setSelectedStyles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { id, gender, ages, category } = location.state || {};
+  const { id, gender, ages } = location.state || {};
   const containerStyle = {
     backgroundImage: `url(/background.png)`,
     backgroundSize: 'cover',
@@ -58,13 +58,18 @@ const ClothSelect = () => {
     }
     setLoading(true);
     try {
-      await axios.patch(`http://localhost:5000/user_selections/${id}`, { style: selectedStyles });
+      await axios.patch(`http://localhost:5000/user_selections/${id}`, {
+        category: '의류',
+        style: selectedStyles,
+      });
+  
       const response = await axios.post('http://localhost:5000/filter_brands', {
         gender,
         ages,
-        category,
+        category: '의류',
         style: selectedStyles,
       });
+  
       navigate('/select/filter_brands', { state: response.data });
     } catch (error) {
       console.error('Error submitting styles:', error);
