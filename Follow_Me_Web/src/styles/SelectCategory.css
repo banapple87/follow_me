@@ -9,9 +9,8 @@
   align-items: center;
 }
 
-/* 제목 스타일 */
 .container h2 {
-  font-size: 2.5rem; /* 제목 크기 */
+  font-size: 2.5rem;
   color: white;
   font-weight: bold;
   margin-bottom: 20px;
@@ -21,14 +20,12 @@
   text-align: center;
 }
 
-/* 구분선 */
 .separator {
-  border-top: 1px solid #333;  /* 구분선 색 */
+  border-top: 1px solid white;
   margin: 20px 0;
   width: 50%;
 }
 
-/* 카테고리 버튼 스타일 */
 .category-button {
   display: flex;
   flex-direction: column;
@@ -39,7 +36,7 @@
   margin: 10px;
   padding: 20px 30px;
   background-color: rgba(169, 169, 169, 0.5);  /* 회색 반투명 배경 */
-  color: #333;
+  color: white;
   border: none;
   border-radius: 10px;
   font-size: 1.2rem;

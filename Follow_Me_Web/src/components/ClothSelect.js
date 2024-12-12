@@ -72,11 +72,13 @@ const ClothSelect = () => {
       setLoading(false);
     }
   };
-
+  const handleGoHome = () => {
+    navigate('/');
+  };
   return (
     <div style={containerStyle} className="container">
       <div className="background-image">
-        <h4 className="title">스타일 선택</h4>
+        <h4 className="title">스타일을 선택하세요.</h4>
         <form onSubmit={handleSubmit}>
           <div className="style-container">
             {styleOptions.map(({ label, value }) => (
@@ -95,6 +97,9 @@ const ClothSelect = () => {
           </button>
         </form>
       </div>
+      <button className="home-button" onClick={handleGoHome}>
+        Home
+      </button>
     </div>
   );
 };
