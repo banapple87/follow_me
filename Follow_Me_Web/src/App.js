@@ -7,6 +7,7 @@ import SelectCategory from './components/SelectCategory';
 import ClothSelect from './components/ClothSelect';
 import BrandList from './components/BrandList';
 import EtcSearch from './components/EtcSearch';
+import Review from './components/Review';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/select/cloth_select" element={<ClothSelect />} />
           <Route path="/select/filter_brands" element={<BrandList />} />
           <Route path="/select/etcsearch" element={<EtcSearch />} />
+          <Route path="/select/review" element={<Review />} />
         </Routes>
       </Router>
     </CustomerProvider>
