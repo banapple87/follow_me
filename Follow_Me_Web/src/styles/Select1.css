@@ -25,20 +25,34 @@
   display: flex;
   gap: 40px;
   margin-top: 80px;
+  justify-content: center;
 }
 
-.button img {
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
+}
+
+.button-container img {
   width: 150px;
   height: 150px;
-  background-color: rgba(229, 229, 229, 0.271); /* 각진 사각형 배경 */
-  padding: 10px; /* 배경과 이미지 사이의 여백 */
+  background-color: rgba(229, 229, 229, 0.271);
+  padding: 10px;
   border-radius: 0;
   transition: transform 0.2s ease, background-color 0.2s ease;
-  display: block; /* 이미지 크기 보장을 위한 블록 요소 */
+  display: block;
 }
 
-.button img:hover {
+.button-container img:hover {
   background-color: rgba(229, 229, 229, 0.271);
   transform: scale(1.1);
+}
+
+.button-text {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
 }

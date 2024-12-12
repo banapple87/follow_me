@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import styles from "../styles/Review.module.css"; // CSS 모듈 불러오기
 
 const EtcSearch = () => {
+  const navigate = useNavigate();
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
   const containerStyle = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/background.png)`,
     backgroundSize: 'cover',
@@ -43,12 +49,12 @@ const EtcSearch = () => {
       <div className={styles.right_Section}>
         <div className={styles.button_Group}>
           {[
-            "개미집", "풍원장시골밥상", "시연솥밥", "제주항갈치고등어쌈정식",
+            "개미집", "풍원장 시골밥상", "시연솥밥", "제주항갈치 고등어쌈정식",
             "매드포갈릭", "아웃백스테이크하우스", "애슐리퀸즈",
             "고동경양", "미스카츠", "무한계도", "겐츠베이커리",
             "폴바셋", "온기정", "동경규동", "우츄진",
             "스시츠카무", "한양중식", "띤띤", "솥솥",
-            "구이구이", "이가네떡볶이", "할매솥충무김밥", "수훈식당",
+            "구이구이", "이가네떡볶이", "할매솥 충무김밥", "수훈식당",
             "고피자"
           ].map((name) => (
             <button
@@ -62,6 +68,9 @@ const EtcSearch = () => {
           ))}
         </div>
       </div>
+      <button className="home-button" onClick={handleGoHome}>
+        Home
+      </button>
     </div>
   );
 };

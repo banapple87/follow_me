@@ -52,21 +52,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 50px;
 }
 
 /* 버튼 그룹 */
 .button_Group {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 한 행에 4개의 버튼 */
-  gap: 10px; /* 버튼 사이의 간격 */
+  grid-template-columns: repeat(6, 1fr); /* 한 행에 4개의 버튼 */
+  gap: 0px;
+  row-gap: 8px;
   width: 100%;
   padding: 10px;
 }
 
 /* 카테고리 버튼 스타일 */
 .add_Button {
-  padding: 8px; /* 버튼 내부 여백을 줄임 */
+  padding: 5px; /* 버튼 내부 여백을 줄임 */
   background-color: rgba(255, 255, 255, 0.2);
   text-align: center;
   border: 1px solid #ccc;

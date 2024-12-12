@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import '../styles/EtcSearch.css'
 
 const EtcSearch = () => {
+  const navigate = useNavigate();
   const containerStyle = {
     backgroundImage: `url(${process.env.PUBLIC_URL}/background.png)`,
     backgroundSize: 'cover',
@@ -16,6 +18,10 @@ const EtcSearch = () => {
     padding: '20px'
   };
 
+  const handleGoHome = () => {
+    navigate('/');
+  };
+  
   const handleSearchClick = () => {
     alert("검색 버튼이 클릭되었습니다.");
   };
@@ -79,6 +85,9 @@ const EtcSearch = () => {
           #흡연실
         </button>
       </div>
+      <button className="home-button" onClick={handleGoHome}>
+        Home
+      </button>
     </div>
   );
 };
