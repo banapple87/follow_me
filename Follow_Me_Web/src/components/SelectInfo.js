@@ -53,9 +53,9 @@ const SelectInfo = () => {
   return (
     <div style={containerStyle} className="select-info-container">
       <header className="select-info-header">
-        <h2>쇼핑 정보 입력</h2>
+        <h2>쇼핑 대상자의 성별과 나이를 선택하세요.</h2>
+        <div className="separator"></div>
       </header>
-      <div className="separator"></div>
       <main className="select-info-form">
         <form>
           <div className="form-gender">
@@ -81,6 +81,7 @@ const SelectInfo = () => {
             <div className="dropdown-group">
               <select onChange={(e) => setAges(e.target.value)}>
                 <option value="">연령대 선택</option>
+                <option value="0-2세">0-2세</option>
                 <option value="3-6세">3-6세</option>
                 <option value="7-10세">7-10세</option>
                 <option value="10대">10대</option>

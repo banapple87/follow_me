@@ -65,7 +65,7 @@ const SelectCategory = () => {
 
   return (
     <div style={containerStyle} className="container">
-      <h2>카테고리를 선택해주세요</h2>
+      <h2>카테고리를 선택하세요.</h2>
       <div className="separator"></div>
       <div className="button-group">
         <button

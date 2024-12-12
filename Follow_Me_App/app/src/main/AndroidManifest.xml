@@ -36,6 +36,8 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan"/>
 
+        <activity android:name=".InfoSelectionActivity" />
+
         <!-- MainActivity 설정 -->
         <activity
             android:name=".MainActivity"
