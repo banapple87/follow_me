@@ -1,13 +1,31 @@
-.container h1 {
-  font-size: 2rem;
-  display: flex;
-  justify-content: center;
+.container h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
   width: 100%;
+  margin-top: 50px;
   margin-bottom: 10px;
-  background-color: transparent; 
+  position: relative;
 }
+
 .separator {
-  border-top: 1px solid #000000;
-  margin: 20px 0;
-  width: 50%;
+  border-top: 1px solid white;
+  margin: 0px 0;
+  width: 300px;
+}
+
+.list-item {
+  background-color: #f5f5f567; 
+  color: white;
+  padding: 10px 20px;
+  border-radius: 1px; 
+  margin: 10px 0;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0; /* 불필요한 기본 패딩도 제거 */
+  margin: 0;  /* 불필요한 기본 여백도 제거 */
 }
