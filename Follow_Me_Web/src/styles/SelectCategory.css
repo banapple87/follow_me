@@ -1,6 +1,4 @@
-/* 전체 컨테이너 */
 .container {
-  background-color: #f5f5f5;  /* 배경색 */
   min-height: 100vh;
   margin: 0;
   display: flex;
@@ -13,7 +11,7 @@
   font-size: 2.5rem;
   color: white;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -22,8 +20,10 @@
 
 .separator {
   border-top: 1px solid white;
-  margin: 20px 0;
-  width: 50%;
+  margin: 0px 0;
+  width: auto;
+  display: inline-block;
+  text-align: center;
 }
 
 .category-button {
@@ -32,13 +32,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 45%; /* 버튼 너비 */
-  margin: 10px;
+  width: 50%;
+  margin: 1px;
   padding: 20px 30px;
   background-color: rgba(169, 169, 169, 0.5);  /* 회색 반투명 배경 */
   color: white;
-  border: none;
-  border-radius: 10px;
+  border: 1px solid white;
+  border-radius: 1px;
   font-size: 1.2rem;
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* 버튼 그림자 */
@@ -58,13 +58,4 @@
   color: #fff;
   transform: scale(1.1);  /* 선택 시 크기 증가 */
   font-weight: bold;
-}
-
-/* 버튼 그룹 레이아웃 */
-.category-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* 2개씩 배치 */
-  gap: 15px;
-  margin-top: 20px;
-  width: 80%;  /* 전체 컨테이너 너비 */
 }

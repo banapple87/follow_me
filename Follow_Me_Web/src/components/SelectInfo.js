@@ -54,8 +54,8 @@ const SelectInfo = () => {
     <div style={containerStyle} className="select-info-container">
       <header className="select-info-header">
         <h2>쇼핑 대상자의 성별과 나이를 선택하세요.</h2>
+        <div className="separator"></div>
       </header>
-      <div className="separator"></div>
       <main className="select-info-form">
         <form>
           <div className="form-gender">
