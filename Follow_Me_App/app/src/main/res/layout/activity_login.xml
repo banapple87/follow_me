@@ -53,7 +53,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:visibility="invisible">
@@ -65,6 +64,9 @@
             android:textColor="#ffffff"
             android:textSize="28sp"
             android:textStyle="bold"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+
             android:layout_marginBottom="24dp"
             android:gravity="start"/>
 
@@ -77,6 +79,8 @@
             android:padding="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#D0D2D2"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_marginBottom="12dp"
             android:inputType="textPersonName"/>
 
@@ -89,6 +93,9 @@
             android:padding="12dp"
             android:textColor="#FFFFFF"
             android:textColorHint="#D0D2D2"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="6dp"
             android:inputType="textPassword"/>
 
         <LinearLayout
@@ -99,15 +106,10 @@
 
             <CheckBox
                 android:id="@+id/remember_checkbox"
-                android:layout_width="18dp"
-                android:layout_height="wrap_content"
-                android:buttonTint="#ffffff" />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingHorizontal="5dp"
+                android:layout_marginStart="17.5dp"
+                android:buttonTint="#ffffff"
                 android:text="아이디 저장하기"
                 android:textColor="#FFFFFF" />
         </LinearLayout>

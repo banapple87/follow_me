@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,22 +30,12 @@ public class StyleSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style_selection);
 
-        // 뒤로 가기 및 홈 버튼 설정
-        ImageButton backButton = findViewById(R.id.back_button);
-        ImageButton homeButton = findViewById(R.id.home_button);
+        Button backButton = findViewById(R.id.back_button);
 
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(StyleSelectionActivity.this, CategorySelectionActivity.class);
-            startActivity(intent);
-            finish();
-            overridePendingTransition(0, 0);
-        });
-
-        homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(StyleSelectionActivity.this, SelectionActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        // 메인 컨테이너에 fade-in 애니메이션 적용
+        LinearLayout mainContainer = findViewById(R.id.main_container);
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        mainContainer.startAnimation(fadeIn);
 
         // 해시태그 버튼 초기화
         Button[] buttons = {
@@ -61,6 +54,21 @@ public class StyleSelectionActivity extends AppCompatActivity {
                 findViewById(R.id.btn13),
         };
 
+        // 슬라이딩 애니메이션 로드
+        Animation slideInLeft = AnimationUtils.loadAnimation(this, R.anim.slide_in_left);
+        Animation slideInRight = AnimationUtils.loadAnimation(this, R.anim.slide_in_right);
+
+        for (Button button : buttons) {
+            if ("left".equals(button.getTag())) {
+                button.startAnimation(slideInLeft);
+            } else if ("right".equals(button.getTag())) {
+                button.startAnimation(slideInRight);
+            }
+
+            // 선택 핸들러 적용
+            button.setOnClickListener(v -> handleSelection(button));
+        }
+
         for (Button button : buttons) {
             button.setOnClickListener(v -> handleSelection(button));
         }
@@ -68,18 +76,26 @@ public class StyleSelectionActivity extends AppCompatActivity {
         // 선택 완료 버튼
         Button completeButton = findViewById(R.id.complete_button);
         completeButton.setOnClickListener(v -> sendDataToServer());
+
+        // BACK 버튼 클릭 이벤트
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(StyleSelectionActivity.this, CategorySelectionActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(0, 0);
+        });
     }
 
     private void handleSelection(Button button) {
         if (selectedButtons.contains(button)) {
+            // 선택 해제: 흰색 배경으로 변경
             selectedButtons.remove(button);
-            button.setBackgroundTintList(getColorStateList(android.R.color.white));
-            button.setTextColor(getColorStateList(android.R.color.black));
+            button.setBackgroundTintList(getResources().getColorStateList(android.R.color.white));
         } else {
             if (selectedButtons.size() < MAX_SELECTION) {
+                // 선택: 검은색 배경으로 변경
                 selectedButtons.add(button);
-                button.setBackgroundTintList(getColorStateList(android.R.color.black));
-                button.setTextColor(getColorStateList(android.R.color.white));
+                button.setBackgroundTintList(getResources().getColorStateList(android.R.color.black));
             } else {
                 Toast.makeText(this, "최대 2개까지만 선택할 수 있습니다.", Toast.LENGTH_SHORT).show();
             }

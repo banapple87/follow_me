@@ -1,156 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F5F5F5"
-    android:fitsSystemWindows="true">
+    android:focusableInTouchMode="true">
 
-    <!-- 헤더 레이아웃 -->
-    <LinearLayout
+    <!-- 배경 이미지 -->
+    <ImageView
+        android:id="@+id/background_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="start"
-        android:layout_marginBottom="16dp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_image" />
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Back"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_back" />
-
-        <ImageButton
-            android:id="@+id/home_button"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_home"
-            android:scaleType="fitCenter"
-            android:contentDescription="Home"/>
-    </LinearLayout>
-
-    <!-- 타이틀 텍스트 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="스타일을 선택해 주세요."
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:textStyle="bold"/>
-
-    <!-- 구분선 -->
+    <!-- 반투명 오버레이 -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#BDBDBD"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="match_parent"
+        android:background="#AA000000" />
 
-    <ScrollView
+    <!-- 메인 컨테이너 -->
+    <LinearLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- 타이틀 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="스타일을 최대 2개 선택하세요."
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 첫 번째 줄 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="2dp">
+
+            <Button
+                android:id="@+id/btn1"
+                android:tag="left"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="2"
+                android:background="#50FFFFFF"
+                android:text="#격식있는"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:tag="right"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:layout_marginStart="2dp"
+                android:background="#50FFFFFF"
+                android:text="#트렌디한"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- 두 번째 줄 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="2dp">
+
+            <Button
+                android:id="@+id/btn3"
+                android:tag="left"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="#러블리한"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn4"
+                android:tag="right"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="2"
+                android:layout_marginStart="2dp"
+                android:background="#50FFFFFF"
+                android:text="#깔끔한"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- 세 번째 줄 (두 줄 높이 버튼 포함) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="2dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn5"
+                    android:tag="left"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="2dp"
+                    android:background="#50FFFFFF"
+                    android:text="#일상적인"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/btn6"
+                    android:tag="left"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="#50FFFFFF"
+                    android:text="#편한"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn7"
+                android:tag="right"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="#스포티한"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="2dp" />
+        </LinearLayout>
+
+        <!-- 네 번째 줄 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="2dp">
+
+            <Button
+                android:id="@+id/btn8"
+                android:tag="left"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="#힙한"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn9"
+                android:tag="left"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginStart="2dp"
+                android:background="#50FFFFFF"
+                android:text="#골프웨어"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn10"
+                android:tag="right"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginStart="2dp"
+                android:background="#50FFFFFF"
+                android:text="#아웃도어"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:padding="16dp">
+            android:orientation="horizontal"
+            android:layout_marginBottom="2dp">
 
-            <!-- GridLayout: 해시태그 버튼들 -->
-            <GridLayout
-                android:id="@+id/hashTagGrid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:layout_gravity="center"
-                android:layout_marginBottom="16dp">
-
-                <Button
-                    android:id="@+id/btn1"
-                    style="@style/HashTagButton"
-                    android:text="#격식있는"/>
-
-                <Button
-                    android:id="@+id/btn2"
-                    style="@style/HashTagButton"
-                    android:text="#트렌디한"/>
-
-                <Button
-                    android:id="@+id/btn3"
-                    style="@style/HashTagButton"
-                    android:text="#러블리한"/>
-
-                <Button
-                    android:id="@+id/btn4"
-                    style="@style/HashTagButton"
-                    android:text="#깔끔한"/>
-
-                <Button
-                    android:id="@+id/btn5"
-                    style="@style/HashTagButton"
-                    android:text="#스포티한"/>
-
-                <Button
-                    android:id="@+id/btn6"
-                    style="@style/HashTagButton"
-                    android:text="#일상적인"/>
-
-                <Button
-                    android:id="@+id/btn7"
-                    style="@style/HashTagButton"
-                    android:text="#편한"/>
-
-                <Button
-                    android:id="@+id/btn8"
-                    style="@style/HashTagButton"
-                    android:text="#힙한"/>
-
-                <Button
-                    android:id="@+id/btn9"
-                    style="@style/HashTagButton"
-                    android:text="#골프웨어"/>
-
-                <Button
-                    android:id="@+id/btn10"
-                    style="@style/HashTagButton"
-                    android:text="#아웃도어"/>
-
-                <Button
-                    android:id="@+id/btn11"
-                    style="@style/HashTagButton"
-                    android:text="#고급스러운"/>
-
-                <Button
-                    android:id="@+id/btn12"
-                    style="@style/HashTagButton"
-                    android:text="#시크한"/>
-
-                <Button
-                    android:id="@+id/btn13"
-                    style="@style/HashTagButton"
-                    android:text="#비지니스 캐주얼"/>
-            </GridLayout>
-
-            <!-- 선택 완료 버튼 -->
             <Button
-                android:id="@+id/complete_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="선택 완료"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#FF5722"
-                android:textStyle="bold"/>
+                android:id="@+id/btn11"
+                android:tag="left"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="#고급스러운"
+                android:textColor="#FFFFFF" />
 
+            <Button
+                android:id="@+id/btn12"
+                android:tag="right"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginStart="2dp"
+                android:background="#50FFFFFF"
+                android:text="#시크한"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+        <!-- 다섯 번째 줄 -->
+        <Button
+            android:id="@+id/btn13"
+            android:tag="right"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:background="#50FFFFFF"
+            android:text="#비지니스 캐주얼"
+            android:textColor="#FFFFFF" />
+
+
+
+        <Button
+            android:id="@+id/complete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="NEXT"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="BACK"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</RelativeLayout>
