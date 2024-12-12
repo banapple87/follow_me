@@ -1,14 +1,25 @@
+import os
 from flask import Flask, request, jsonify
 import mysql.connector
 from mysql.connector import Error
 
 app = Flask(__name__)
 
+# 비밀번호 파일에서 비밀번호 읽기
+def get_db_password():
+    try:
+        # 현재 파일과 같은 경로에 있는 db_password.txt를 참조
+        credentials_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_password.txt")
+        with open(credentials_path, "r") as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        raise Exception("Database credentials file not found.")
+
 # MySQL 데이터베이스 연결 정보
 DB_CONFIG = {
     "host": "10.104.24.229",
     "user": "reactone",
-    "password": "reactone123",
+    "password": get_db_password(),
     "database": "user_db"
 }
 

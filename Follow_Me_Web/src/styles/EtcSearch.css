@@ -49,6 +49,7 @@ h1.header-title {
   border-right: none;
   font-size: 1rem;
   outline: none;
+  
 }
 
 
@@ -89,7 +90,7 @@ h2 {
 .add-button {
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  padding: 10px 40px;
+  padding: 7px 40px;
   border: 1px solid #ffffff;
   border-radius: 0;
   cursor: pointer;

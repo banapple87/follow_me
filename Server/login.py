@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request, session, redirect
 from flask_session import Session
 from flask_cors import CORS
@@ -5,6 +6,16 @@ import pymysql
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+
+# 비밀번호 파일에서 비밀번호 읽기
+def get_db_password():
+    try:
+        # 현재 파일과 같은 경로에 있는 db_password.txt를 참조
+        credentials_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "db_password.txt")
+        with open(credentials_path, "r") as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        raise Exception("Database credentials file not found.")
 
 # CORS 설정 (flask_cors로 처리)
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -17,7 +28,7 @@ Session(app)
 db = pymysql.connect(
     host="10.104.24.229",  # MySQL 호스트
     user="reactone",  # MySQL 사용자
-    password="reactone123",  # MySQL 비밀번호
+    password=get_db_password(),  # MySQL 비밀번호
     database="user_db",  # 사용할 데이터베이스 이름
     cursorclass=pymysql.cursors.DictCursor  # 결과를 딕셔너리로 받기 위해 설정
 )
