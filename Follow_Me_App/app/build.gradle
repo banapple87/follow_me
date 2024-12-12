@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.example.follow_me'
     compileSdk 34
@@ -14,14 +17,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "NAVER_MAPS_CLIENT_ID", "\"${properties['NAVER_MAPS_CLIENT_ID']}\""
+        manifestPlaceholders["NAVER_MAPS_CLIENT_ID"] = properties['NAVER_MAPS_CLIENT_ID']
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+    buildFeatures {
+        buildConfig = true
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -29,7 +32,6 @@ android {
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity

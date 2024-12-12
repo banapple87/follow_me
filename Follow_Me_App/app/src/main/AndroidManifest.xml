@@ -25,10 +25,7 @@
             android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.FollowMe">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
@@ -42,7 +39,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.FollowMe" />
+            android:theme="@style/Theme.FollowMe">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".SelectionActivity"
@@ -59,7 +61,7 @@
         <!-- 네이버 지도 API 키 설정 -->
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="hc97canjmp" />
+            android:value="${NAVER_MAPS_CLIENT_ID}" />
     </application>
 
 </manifest>
