@@ -73,11 +73,11 @@ app.post('/filter_brands', (req, res) => {
   }
   if (style && style.length > 0) {
     const styleConditions = style
-      .map(() => '(style1 = ? OR style2 = ?)')
-      .join(' OR ');
+      .map(() => '(style1 = ? OR style2 = ? OR style3 = ?)')
+      .join(' AND ');
     whereConditions.push(`(${styleConditions})`);
     style.forEach((s) => {
-      params.push(s, s);
+      params.push(s, s, s);
     });
   }
 
