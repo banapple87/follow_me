@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
+
+    <!-- 배경 이미지 -->
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_image" />
+
+    <!-- 반투명 오버레이 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA000000" />
+
+    <!-- 메인 컨테이너 -->
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp">
+
+        <!-- 타이틀 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="구매 대상자의 성별과 나이를 선택하세요."
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 성별 선택 아이콘과 나이 선택 NumberPicker를 가로로 배치 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#50FFFFFF">
+
+            <ImageView
+                android:id="@+id/male_icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_male"
+                android:layout_margin="12dp" />
+
+            <ImageView
+                android:id="@+id/female_icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="12dp"
+                android:src="@drawable/ic_female" />
+
+            <NumberPicker
+                android:id="@+id/age_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_margin="12dp" />
+        </LinearLayout>
+
+        <!-- NEXT 버튼 -->
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEXT"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            android:textColor="#FFFFFF" />
+
+        <!-- BACK 버튼 -->
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:background="@android:color/transparent"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</RelativeLayout>

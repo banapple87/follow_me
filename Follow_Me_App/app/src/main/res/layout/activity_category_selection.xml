@@ -1,120 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F5F5F5"
-    android:padding="20dp"
-    android:fitsSystemWindows="true">
+    android:focusableInTouchMode="true">
 
-    <!-- 헤더 레이아웃 -->
-    <LinearLayout
+    <!-- 배경 이미지 -->
+    <ImageView
+        android:id="@+id/background_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="start"
-        android:layout_marginBottom="16dp">
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_image" />
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Back"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_back" />
-
-        <ImageButton
-            android:id="@+id/home_button"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_home"
-            android:scaleType="fitCenter"
-            android:contentDescription="Home"/>
-    </LinearLayout>
-
-    <!-- 타이틀 텍스트 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="카테고리를 선택해 주세요."
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"
-        android:textStyle="bold"/>
-
-    <!-- 구분선 -->
+    <!-- 반투명 오버레이 -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#BDBDBD"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_height="match_parent"
+        android:background="#AA000000" />
 
-    <!-- 카테고리 버튼들 -->
+    <!-- 메인 컨테이너 -->
     <LinearLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         android:orientation="vertical"
-        android:paddingHorizontal="24dp">
+        android:padding="24dp">
 
+        <!-- 타이틀 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카테고리를 선택하세요."
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 의류 버튼 -->
         <Button
             android:id="@+id/clothing_button"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:insetTop="0dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="2dp"
+            android:background="#50FFFFFF"
             android:text="의류"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
 
-        <Button
+        <!-- 수영복, 이너웨어 버튼을 가로로 배열 -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:insetTop="0dp"
-            android:text="수영복"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:insetTop="0dp"
-            android:text="이너웨어"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/swimwear_button"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="수영복"
+                android:textColor="#FFFFFF" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:insetTop="0dp"
-            android:text="코스메틱"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/innerwear_button"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="1dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="이너웨어"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
 
-        <Button
+        <!-- 코스메틱, 패션잡화 버튼을 가로로 배열 -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:insetTop="0dp"
-            android:isScrollContainer="true"
-            android:text="패션잡화"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/cosmetic_button"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="코스메틱"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/fashion_accessory_button"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="1dp"
+                android:layout_weight="1"
+                android:background="#50FFFFFF"
+                android:text="패션잡화"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- 명품관 버튼 -->
         <Button
+            android:id="@+id/luxury_button"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:backgroundTint="#FFFFFF"
-            android:insetTop="0dp"
+            android:layout_height="60dp"
+            android:background="#50FFFFFF"
             android:text="명품관"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#FFFFFF" />
+
+        <!-- BACK 버튼 -->
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:layout_marginTop="12dp"
+            android:background="@android:color/transparent"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>
