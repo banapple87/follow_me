@@ -33,9 +33,17 @@ public class CategorySelectionActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-        // 의류 버튼 클릭 리스너
+
         clothingButton.setOnClickListener(v -> {
+            // 이전 Activity에서 전달받은 성별과 나이 값
+            String gender = getIntent().getStringExtra("gender");
+            String age = getIntent().getStringExtra("age");
+            String category = "의류";
+
             Intent intent = new Intent(CategorySelectionActivity.this, StyleSelectionActivity.class);
+            intent.putExtra("gender", gender);
+            intent.putExtra("age", age);
+            intent.putExtra("category", category);
             startActivity(intent);
             overridePendingTransition(0, 0);
         });

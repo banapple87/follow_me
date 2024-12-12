@@ -127,11 +127,12 @@ public class SelectionActivity extends AppCompatActivity {
                 // 성별을 선택하지 않은 경우 Toast 메시지를 표시하고 다음 페이지로 이동하지 않음
                 Toast.makeText(this, "성별을 선택하세요", Toast.LENGTH_SHORT).show();
             } else {
-                // 성별이 선택된 경우에만 다음 페이지로 이동
-                Toast.makeText(this, "나이: " + selectedAge + ", 성별: " + selectedGender, Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+                // 성별과 나이 정보를 Intent에 담아 전달
                 Intent intent = new Intent(SelectionActivity.this, CategorySelectionActivity.class);
+                intent.putExtra("gender", selectedGender);
+                intent.putExtra("age", String.valueOf(selectedAge));
                 startActivity(intent);
+                dialog.dismiss();
             }
         });
 
