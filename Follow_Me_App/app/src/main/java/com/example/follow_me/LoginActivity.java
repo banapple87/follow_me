@@ -174,8 +174,9 @@ public class LoginActivity extends AppCompatActivity {
                         String name = user.getString("name");
 
                         runOnUiThread(() -> {
-                            Toast.makeText(LoginActivity.this, name + "님, 안녕하세요!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, SelectionActivity.class));
+                            Intent intent = new Intent(LoginActivity.this, SelectionActivity.class);
+                            intent.putExtra("username", name);
+                            startActivity(intent);
                             finish();
                             overridePendingTransition(0, 0);
                         });

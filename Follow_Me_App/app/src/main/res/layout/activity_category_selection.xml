@@ -42,7 +42,7 @@
         <Button
             android:id="@+id/clothing_button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="2dp"
             android:background="#50FFFFFF"
             android:text="의류"
@@ -58,7 +58,7 @@
             <Button
                 android:id="@+id/swimwear_button"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
                 android:background="#50FFFFFF"
@@ -68,7 +68,7 @@
             <Button
                 android:id="@+id/innerwear_button"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="1dp"
                 android:layout_weight="1"
                 android:background="#50FFFFFF"
@@ -86,7 +86,7 @@
             <Button
                 android:id="@+id/cosmetic_button"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="1dp"
                 android:layout_weight="1"
                 android:background="#50FFFFFF"
@@ -96,7 +96,7 @@
             <Button
                 android:id="@+id/fashion_accessory_button"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="1dp"
                 android:layout_weight="1"
                 android:background="#50FFFFFF"
@@ -108,7 +108,7 @@
         <Button
             android:id="@+id/luxury_button"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:background="#50FFFFFF"
             android:text="명품관"
             android:textColor="#FFFFFF" />

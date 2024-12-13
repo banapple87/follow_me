@@ -7,6 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SelectionActivity extends AppCompatActivity {
@@ -18,6 +20,13 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
+
+        String username = getIntent().getStringExtra("username");
+
+        TextView welcomeTextView = findViewById(R.id.subtitle_text);
+        if (username != null) {
+            welcomeTextView.setText(username + "님 안녕하세요.");
+        }
 
         HorizontalScrollView horizontalScrollView = findViewById(R.id.horizontal_scroll);
         LinearLayout iconLayout = findViewById(R.id.icon_layout);

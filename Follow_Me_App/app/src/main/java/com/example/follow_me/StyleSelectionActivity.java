@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -69,13 +71,15 @@ public class StyleSelectionActivity extends AppCompatActivity {
             button.setOnClickListener(v -> handleSelection(button));
         }
 
-        for (Button button : buttons) {
-            button.setOnClickListener(v -> handleSelection(button));
-        }
-
         // 선택 완료 버튼
         Button completeButton = findViewById(R.id.complete_button);
-        completeButton.setOnClickListener(v -> sendDataToServer());
+        completeButton.setOnClickListener(v -> {
+            if (selectedButtons.isEmpty()) {
+                Toast.makeText(this, "스타일을 하나 이상 선택해 주세요.", Toast.LENGTH_SHORT).show();
+            } else {
+                sendDataToServer();
+            }
+        });
 
         // BACK 버튼 클릭 이벤트
         backButton.setOnClickListener(v -> {
@@ -103,7 +107,7 @@ public class StyleSelectionActivity extends AppCompatActivity {
     }
 
     private void sendDataToServer() {
-        // 성별, 나이, 카테고리 선택 값 (예제 값)
+        // 성별, 나이, 카테고리 선택 값
         String gender = getIntent().getStringExtra("gender");
         String age = getIntent().getStringExtra("age");
         String category = getIntent().getStringExtra("category");
@@ -138,37 +142,45 @@ public class StyleSelectionActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String responseMessage = "";
+            String response = "";
             try {
-                URL url = new URL("http://10.104.24.229:5000/submitData");
+                URL url = new URL("http://10.104.24.229:5003/submitData");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setDoOutput(true);
 
-                // 데이터 전송
                 OutputStream os = connection.getOutputStream();
                 os.write(params[0].getBytes("UTF-8"));
                 os.flush();
                 os.close();
 
-                // 서버 응답 확인
-                int responseCode = connection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    responseMessage = "Data sent successfully!";
-                } else {
-                    responseMessage = "Failed to send data. Response Code: " + responseCode;
+                // 서버 응답 읽기
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine;
+                StringBuilder responseContent = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    responseContent.append(inputLine);
                 }
+                in.close();
+                response = responseContent.toString();
             } catch (Exception e) {
                 e.printStackTrace();
-                responseMessage = "Error: " + e.getMessage();
+                response = "Error: " + e.getMessage();
             }
-            return responseMessage;
+            return response;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            // 서버로부터 받은 결과를 BrandListActivity로 전달
+            Intent intent = new Intent(context, BrandListActivity.class);
+            intent.putExtra("brandListJson", result);
+            context.startActivity(intent);
+
+            if (context instanceof StyleSelectionActivity) {
+                ((StyleSelectionActivity) context).finish();
+            }
         }
     }
 }

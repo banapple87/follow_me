@@ -3,13 +3,14 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import joblib
 from flask_cors import CORS
+import os
 
 # Flask 애플리케이션 로깅 설정
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
 
-# 모델 로드
-model_path = 'random_forest_model.pkl'  # 방금 저장한 모델 경로
+# 모델 경로 설정 (한 디렉토리 위에 있는 Model 폴더에 있는 경우)
+model_path = os.path.join(os.path.dirname(__file__), '..', 'Model', 'random_forest_model.pkl')
 
 try:
     escalator_model = joblib.load(model_path)

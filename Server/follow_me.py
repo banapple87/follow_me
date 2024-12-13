@@ -142,18 +142,33 @@ def optimal_path():
 
         brand_coordinates = []
         brand_mapping = {}
+        found_brands = set()
+
         for row in cursor.fetchall():
-            # 좌표 데이터 파싱
-            lat, lon = map(float, row['coordinate'].split(','))  # coordinate 필드는 위도와 경도만 포함
-            floor = int(row['floor'])  # floor 필드에서 층 정보 가져오기
-            brand_coordinates.append((floor, lat, lon))
-            brand_mapping[row['brand']] = (floor, lat, lon)
+            # 좌표 데이터가 None이 아닌 경우에만 파싱
+            if row['coordinate'] and row['coordinate'].strip():
+                try:
+                    lat, lon = map(float, row['coordinate'].split(','))  # 위도와 경도 파싱
+                    floor = int(row['floor'])  # 층 정보 파싱
+                    brand_coordinates.append((floor, lat, lon))
+                    brand_mapping[row['brand']] = (floor, lat, lon)
+                    found_brands.add(row['brand'])
+                except (ValueError, AttributeError):
+                    print(f"Warning: Invalid coordinate format for brand '{row['brand']}': {row['coordinate']}")
+            else:
+                print(f"Warning: No coordinates found for brand '{row['brand']}'")
+
     except mysql.connector.Error as err:
         return jsonify({"error": str(err)}), 500
     finally:
         if conn.is_connected():
             cursor.close()
             conn.close()
+
+    # 좌표가 없는 브랜드를 제외한 브랜드 리스트 확인
+    missing_brands = [brand for brand in brand_list if brand not in found_brands]
+    if missing_brands:
+        print(f"Warning: No coordinates found for these brands: {missing_brands}")
 
     # 조회된 좌표가 없을 경우 에러 반환
     if not brand_coordinates:
@@ -163,7 +178,7 @@ def optimal_path():
     start_node = min(
         [node for node in dense_path_coordinates if node[0] == start_point[0]],  # 같은 층의 노드만 고려
         key=lambda node: haversine_distance(
-        start_point[1], start_point[2], start_point[0], node[1], node[2], node[0]
+            start_point[1], start_point[2], start_point[0], node[1], node[2], node[0]
         )
     )
 
@@ -177,7 +192,6 @@ def optimal_path():
         )
         for coord in brand_coordinates
     ]
-
 
     # 최적 방문 순서 계산
     visiting_order = nearest_neighbor_optimization(start_node, target_nodes, path_graph)
@@ -205,9 +219,9 @@ def optimal_path():
 
     return jsonify({
         "path": optimized_path,
-        "brands": brand_mapping  # 브랜드 이름과 좌표 매핑 결과 반환
+        "brands": brand_mapping,       # 브랜드 이름과 좌표 매핑 결과 반환
     })
-
+\
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
