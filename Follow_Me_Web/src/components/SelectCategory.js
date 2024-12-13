@@ -23,7 +23,6 @@ const SelectCategory = () => {
     padding: '20px',
   };
 
-  // 카테고리 선택 핸들러
   const handleCategoryClick = async (selectedCategory) => {
     setLoading(true);
 

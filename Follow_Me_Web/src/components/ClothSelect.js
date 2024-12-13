@@ -13,7 +13,7 @@ const styleOptions = [
   { label: '시크한', value: '시크한' },
   { label: '트렌디한', value: '트렌디한' },
   { label: '스포티한', value: '스포티한' },
-  { label: '비지니스 캐주얼', value: '비지니스 캐주얼' },
+  { label: '비지니스캐주얼', value: '비지니스캐주얼' },
   { label: '일상적인', value: '일상적인' },
   { label: '골프웨어', value: '골프웨어' },
   { label: '아웃도어', value: '아웃도어' },
