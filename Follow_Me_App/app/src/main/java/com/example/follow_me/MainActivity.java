@@ -3,10 +3,12 @@ package com.example.follow_me;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.location.Location;
@@ -28,7 +30,6 @@ import com.naver.maps.map.util.FusedLocationSource;
 import com.naver.maps.map.indoor.IndoorLevel;
 import com.naver.maps.map.indoor.IndoorSelection;
 import com.naver.maps.map.LocationTrackingMode;
-import com.naver.maps.map.overlay.Marker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,10 +67,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private FloorManager floorManager;
     private NetworkManager networkManager;
 
+    private ImageView walkingAnimationView;
+    private AnimationDrawable walkingAnimation;
+    private ImageView escalatorAnimationView;
+    private AnimationDrawable escalatorAnimation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        walkingAnimationView = findViewById(R.id.walking_animation);
+        walkingAnimationView.setBackgroundResource(R.drawable.walking_animation);
+        walkingAnimation = (AnimationDrawable) walkingAnimationView.getBackground();
+        escalatorAnimationView = findViewById(R.id.escalator_animation);
+        escalatorAnimationView.setBackgroundResource(R.drawable.escalator_animation);
+        escalatorAnimation = (AnimationDrawable) escalatorAnimationView.getBackground();
 
         predictionResult = findViewById(R.id.prediction_result);
 
@@ -242,5 +255,58 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         locationUpdateHandler.removeCallbacksAndMessages(null);
         floorUpdateHandler.removeCallbacksAndMessages(null);
         sensorDataManager.stopSensorUpdates();
+    }
+
+    // 애니메이션 시작 메서드
+    private void startWalkingAnimation() {
+        walkingAnimationView.setVisibility(View.VISIBLE);
+        walkingAnimation.start();
+    }
+
+    private void startescalatorAnimation() {
+        escalatorAnimationView.setVisibility(View.VISIBLE);
+        escalatorAnimation.start();
+    }
+
+    // 모든 애니메이션 중지
+    private void stopAllAnimations() {
+        if (walkingAnimation.isRunning()) {
+            walkingAnimation.stop();
+            walkingAnimationView.setVisibility(View.GONE);
+        }
+        if (escalatorAnimation.isRunning()) {
+            escalatorAnimation.stop();
+            escalatorAnimationView.setVisibility(View.GONE);
+        }
+    }
+
+    // 예측 결과를 업데이트하는 메서드
+    public void updatePrediction(String prediction) {
+        stopAllAnimations();
+        if ("걷는 중".equals(prediction)) {
+            startWalkingAnimation();
+        } else if ("탑승 중".equals(prediction)) {
+            startescalatorAnimation();
+        }
+    }
+
+    public void moveToHigherFloor() {
+        IndoorSelection currentSelection = naverMap.getIndoorSelection();
+        if (currentSelection != null) {
+            IndoorLevel currentLevel = currentSelection.getLevel();
+            Toast.makeText(this, "현재 층: " + currentLevel.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "내부지도가 활성화되지 않았습니다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void moveToLowerFloor() {
+        IndoorSelection currentSelection = naverMap.getIndoorSelection();
+        if (currentSelection != null) {
+            IndoorLevel currentLevel = currentSelection.getLevel();
+            Toast.makeText(this, "현재 층: " + currentLevel.getName(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "내부지도가 활성화되지 않았습니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

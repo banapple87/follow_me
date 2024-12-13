@@ -163,7 +163,7 @@ public class FloorManager {
                 }
 
                 try {
-                    Thread.sleep(1); // 애니메이션 딜레이
+                    Thread.sleep(10); // 애니메이션 딜레이
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Animation interrupted", e);
                 }
