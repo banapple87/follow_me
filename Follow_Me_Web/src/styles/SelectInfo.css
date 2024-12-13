@@ -21,7 +21,7 @@
 .separator {
   border-top: 1px solid white;
   margin: 0px 0;
-  width: auto;
+  width: 500px !important;
   display: inline-block;
   text-align: center;
 }
@@ -36,7 +36,6 @@
   padding: 20px 100px;
   margin: 0 10px;
   margin-bottom: 50px;
-  border: 1px solid white;
   border-radius: 1px;
   background-color: #f5f5f567;
   color: white;
@@ -74,7 +73,6 @@ select {
   width: 70%;
   margin-bottom: 30px;
   background-color: #f5f5f567;
-  border: 1px solid white;
 }
 
 .dropdown-group {
