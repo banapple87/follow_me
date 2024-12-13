@@ -126,6 +126,20 @@ app.post('/filter_brands', (req, res) => {
   });
 });
 
+// 리뷰 데이터 API
+app.get('/api/reviews', (req, res) => {
+  const connection = mysql.createConnection(dbConfig);
+  connection.query('SELECT place_name, summary FROM summarized_reviews', (error, results) => {
+    if (error) {
+      console.error("DB 에러:", error);
+      res.status(500).json({ error: "데이터를 가져오는 중 오류가 발생했습니다." });
+    } else {
+      res.json(results);
+    }
+    connection.end();
+  });
+});
+
 // 서버 실행
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
