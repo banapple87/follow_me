@@ -33,7 +33,7 @@ public class BrandListActivity extends AppCompatActivity {
 
         brandListView = findViewById(R.id.brand_list_view);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, brandList);
+        adapter = new ArrayAdapter<>(this, R.layout.list_item_brand, brandList);
         brandListView.setAdapter(adapter);
 
         // 전달받은 JSON 데이터 파싱

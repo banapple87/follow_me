@@ -222,8 +222,6 @@
             android:text="#비지니스 캐주얼"
             android:textColor="#FFFFFF" />
 
-
-
         <Button
             android:id="@+id/complete_button"
             android:layout_width="wrap_content"
@@ -239,6 +237,5 @@
             android:background="@android:color/transparent"
             android:text="BACK"
             android:textColor="#FFFFFF" />
-
     </LinearLayout>
 </RelativeLayout>

@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
-    android:fitsSystemWindows="true">
+    android:focusableInTouchMode="true">
 
     <ImageView
         android:id="@+id/background_image"
@@ -19,17 +18,24 @@
         android:layout_height="match_parent"
         android:background="#AA000000" />
 
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
     <!-- 타이틀 텍스트 -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="추천리스트가 생성되었습니다."
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:layout_marginTop="16dp" />
 
     <View
         android:layout_width="wrap_content"
@@ -39,32 +45,35 @@
         android:layout_marginTop="6dp"
         android:layout_marginEnd="50dp"
         android:background="#FFFFFF" />
-    <!-- 브랜드 리스트를 보여줄 ListView -->
 
-    <ListView
-        android:id="@+id/brand_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_below="@id/title"
-        android:layout_gravity="center"
-        android:layout_marginTop="1dp"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="1dp"
-        android:drawSelectorOnTop="true"
-        android:padding="8dp"
-        android:textAlignment="center" />
+        <ListView
+            android:id="@+id/brand_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/title"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="1dp"
+            android:drawSelectorOnTop="true"
+            android:padding="8dp"
+            android:textAlignment="center" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/title"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="#FFFFFF" />
 
     <Button
         android:id="@+id/start_navigation_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#50FFFFFF"
+        android:background="@android:color/transparent"
         android:text="길 안내"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
-
+        android:textColor="#FFFFFF" />
+    </LinearLayout>
 </RelativeLayout>

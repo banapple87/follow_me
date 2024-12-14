@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private LatLng startPoint = null;
     private SensorDataManager sensorDataManager;
     private TextView predictionResult;
+    private TextView probabilityResult;
 
     private int currentFloor = -1;
     private String lastSelectedFloor = null;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         escalatorAnimation = (AnimationDrawable) escalatorAnimationView.getBackground();
 
         predictionResult = findViewById(R.id.prediction_result);
+        probabilityResult = findViewById(R.id.probability_result);
 
         // SensorDataManager 초기화
         sensorDataManager = new SensorDataManager(this, predictionResult);
@@ -281,8 +283,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     // 예측 결과를 업데이트하는 메서드
-    public void updatePrediction(String prediction) {
+    public void updatePrediction(String prediction, double walkingProbability, double escalatorProbability) {
         stopAllAnimations();
+
+        // 확률 텍스트 업데이트
+        String probabilityText = String.format("걷는 중: %.2f%%\n탑승 중: %.2f%%", walkingProbability * 100, escalatorProbability * 100);
+        probabilityResult.setText(probabilityText);
+
+        // 애니메이션 실행
         if ("걷는 중".equals(prediction)) {
             startWalkingAnimation();
         } else if ("탑승 중".equals(prediction)) {

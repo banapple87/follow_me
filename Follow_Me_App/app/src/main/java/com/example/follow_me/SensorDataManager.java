@@ -165,26 +165,32 @@ public class SensorDataManager implements SensorEventListener {
                 if (response.isSuccessful() && response.body() != null) {
                     PredictionResponse predictionResponse = response.body();
                     String[] predictions = predictionResponse.getEscalatorPredictions();
+
+                    // 확률값을 추출
+                    double walkingProbability = Double.parseDouble(predictionResponse.getProbabilities().get("걷는 중 (walking)").replace("%", "")) / 100;
+                    double escalatorProbability = Double.parseDouble(predictionResponse.getProbabilities().get("탑승 중 (escalator)").replace("%", "")) / 100;
+
                     String result = "Prediction: " + Arrays.toString(predictions);
                     predictionResult.setText(result);
 
-                    if (Arrays.toString(predictions).contains("걷는 중")) {
-                        ((MainActivity) predictionResult.getContext()).updatePrediction("걷는 중");
-                    } else if (Arrays.toString(predictions).contains("탑승 중")) {
-                        ((MainActivity) predictionResult.getContext()).updatePrediction("탑승 중");
+                    // 확률이 80% 이상일 때만 애니메이션 실행
+                    if (walkingProbability >= 0.8) {
+                        ((MainActivity) predictionResult.getContext()).updatePrediction("걷는 중", walkingProbability, escalatorProbability);
+                    } else if (escalatorProbability >= 0.8) {
+                        ((MainActivity) predictionResult.getContext()).updatePrediction("탑승 중", walkingProbability, escalatorProbability);
                     } else {
-                        ((MainActivity) predictionResult.getContext()).updatePrediction("정지");
+                        ((MainActivity) predictionResult.getContext()).updatePrediction("정지", walkingProbability, escalatorProbability);
                     }
                 } else {
                     predictionResult.setText("Server Error: " + response.code());
-                    ((MainActivity) predictionResult.getContext()).updatePrediction("정지");
+                    ((MainActivity) predictionResult.getContext()).updatePrediction("정지", 0.0, 0.0);
                 }
             }
 
             @Override
             public void onFailure(Call<PredictionResponse> call, Throwable t) {
                 predictionResult.setText("Connection Failed: " + t.getMessage());
-                ((MainActivity) predictionResult.getContext()).updatePrediction("정지");
+                ((MainActivity) predictionResult.getContext()).updatePrediction("정지", 0.0, 0.0);
             }
         });
     }
