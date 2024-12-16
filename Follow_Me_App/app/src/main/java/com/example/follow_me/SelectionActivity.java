@@ -21,7 +21,7 @@ public class SelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
 
-        String username = getIntent().getStringExtra("username");
+        String username = UserSession.getInstance().getUsername();
 
         TextView welcomeTextView = findViewById(R.id.subtitle_text);
         if (username != null) {

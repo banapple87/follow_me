@@ -66,7 +66,7 @@ def submit_data():
 
         # 스타일 파싱 및 # 제거
         if isinstance(styles, str):
-            styles = styles.strip('[]').replace(' ', '').split(',')
+            styles = styles.strip('[]').replace(' ', '').replace("'", "").split(',')
         if isinstance(styles, list):
             styles = [style.lstrip('#').strip() for style in styles]
 

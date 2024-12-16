@@ -42,8 +42,8 @@ def haversine_distance(lat1, lon1, floor1, lat2, lon2, floor2):
     a = math.sin(d_phi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(d_lambda / 2) ** 2
     horizontal_distance = R * (2 * math.atan2(math.sqrt(a), math.sqrt(1 - a)))
 
-    # 층 차이에 따른 수직 거리 추가 (층당 5m로 가정)
-    vertical_distance = abs(floor2 - floor1) * 0.020  # 0.005 km = 5m
+    # 층 차이에 따른 수직 거리 추가 (층당 20m로 가정)
+    vertical_distance = abs(floor2 - floor1) * 0.02  # 0.02 km = 20m
 
     # Pythagoras를 이용해 총 거리 계산
     return math.sqrt(horizontal_distance ** 2 + vertical_distance ** 2)

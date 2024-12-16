@@ -171,11 +171,15 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonResponse = new JSONObject(responseBody);
                         JSONObject user = jsonResponse.getJSONObject("user");
+                        String id = user.getString("id");
                         String name = user.getString("name");
+
+                        // 싱글톤에 사용자 정보 저장
+                        UserSession.getInstance().setUserId(id);
+                        UserSession.getInstance().setUsername(name);
 
                         runOnUiThread(() -> {
                             Intent intent = new Intent(LoginActivity.this, SelectionActivity.class);
-                            intent.putExtra("username", name);
                             startActivity(intent);
                             finish();
                             overridePendingTransition(0, 0);

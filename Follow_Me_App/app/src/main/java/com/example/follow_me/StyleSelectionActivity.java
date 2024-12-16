@@ -112,6 +112,13 @@ public class StyleSelectionActivity extends AppCompatActivity {
         String age = getIntent().getStringExtra("age");
         String category = getIntent().getStringExtra("category");
 
+        // UserSession에서 userId 가져오기
+        String userId = UserSession.getInstance().getUserId();
+        if (userId == null) {
+            Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // 스타일 선택 값
         HashSet<String> styles = new HashSet<>();
         for (Button button : selectedButtons) {
@@ -125,62 +132,69 @@ public class StyleSelectionActivity extends AppCompatActivity {
             data.put("age", age);
             data.put("category", category);
             data.put("styles", styles);
+            data.put("user_id", userId);
 
-            // 비동기 데이터 전송 (Context 전달)
-            new SendToServerTask(this).execute(data.toString());
+            // 하나의 Task로 두 서버에 요청
+            new FetchBrandAndRecommendationTask(this).execute(data.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static class SendToServerTask extends AsyncTask<String, Void, String> {
+    private static class FetchBrandAndRecommendationTask extends AsyncTask<String, Void, JSONObject> {
         private Context context;
 
-        public SendToServerTask(Context context) {
+        public FetchBrandAndRecommendationTask(Context context) {
             this.context = context;
         }
 
         @Override
-        protected String doInBackground(String... params) {
-            String response = "";
+        protected JSONObject doInBackground(String... params) {
+            JSONObject combinedResult = new JSONObject();
             try {
-                URL url = new URL("http://10.104.24.229:5003/submitData");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type", "application/json");
-                connection.setDoOutput(true);
+                // 브랜드 리스트 요청
+                String brandListResponse = sendPostRequest("http://10.104.24.229:5003/submitData", params[0]);
+                combinedResult.put("brandList", new JSONObject(brandListResponse));
 
-                OutputStream os = connection.getOutputStream();
-                os.write(params[0].getBytes("UTF-8"));
-                os.flush();
-                os.close();
+                // 추천 리스트 요청
+                String recommendationResponse = sendPostRequest("http://10.104.24.229:5004/recommend", params[0]);
+                combinedResult.put("recommendationList", new JSONObject(recommendationResponse));
 
-                // 서버 응답 읽기
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String inputLine;
-                StringBuilder responseContent = new StringBuilder();
-                while ((inputLine = in.readLine()) != null) {
-                    responseContent.append(inputLine);
-                }
-                in.close();
-                response = responseContent.toString();
             } catch (Exception e) {
                 e.printStackTrace();
-                response = "Error: " + e.getMessage();
             }
-            return response;
+            return combinedResult;
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            // 서버로부터 받은 결과를 BrandListActivity로 전달
+        protected void onPostExecute(JSONObject result) {
             Intent intent = new Intent(context, BrandListActivity.class);
-            intent.putExtra("brandListJson", result);
+            intent.putExtra("combinedData", result.toString());
             context.startActivity(intent);
+        }
 
-            if (context instanceof StyleSelectionActivity) {
-                ((StyleSelectionActivity) context).finish();
+        private String sendPostRequest(String urlString, String jsonInput) throws Exception {
+            URL url = new URL(urlString);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            OutputStream os = connection.getOutputStream();
+            os.write(jsonInput.getBytes("UTF-8"));
+            os.flush();
+            os.close();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder responseContent = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                responseContent.append(inputLine);
             }
+            in.close();
+
+            return responseContent.toString();
         }
     }
 }
+

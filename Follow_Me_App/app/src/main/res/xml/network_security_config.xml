@@ -4,6 +4,6 @@
         <!-- 에뮬레이터에서 사용하는 IP 설정 -->
         <domain includeSubdomains="true">10.0.2.2</domain>
         <domain includeSubdomains="true">10.104.24.229</domain>
-        <domain includeSubdomains="true">192.168.123.110</domain>
+        <domain includeSubdomains="true">172.20.10.14</domain>
     </domain-config>
 </network-security-config>
