@@ -71,7 +71,7 @@ public class StyleSelectionActivity extends AppCompatActivity {
             button.setOnClickListener(v -> handleSelection(button));
         }
 
-        // 선택 완료 버튼
+        // NEXT 버튼
         Button completeButton = findViewById(R.id.complete_button);
         completeButton.setOnClickListener(v -> {
             if (selectedButtons.isEmpty()) {
@@ -171,6 +171,8 @@ public class StyleSelectionActivity extends AppCompatActivity {
             Intent intent = new Intent(context, BrandListActivity.class);
             intent.putExtra("combinedData", result.toString());
             context.startActivity(intent);
+            ((StyleSelectionActivity) context).overridePendingTransition(0, 0);
+            ((StyleSelectionActivity) context).finish();
         }
 
         private String sendPostRequest(String urlString, String jsonInput) throws Exception {

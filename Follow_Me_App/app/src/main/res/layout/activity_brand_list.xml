@@ -84,19 +84,35 @@
             android:text="BACK"
             android:textColor="#FFFFFF" />
 
+        <!-- 협업 필터링 추천 리스트 타이틀 -->
+        <TextView
+            android:id="@+id/similar_customers_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="start" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/similar_customers_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="horizontal" />
+
+        <!-- 콘텐츠 기반 추천 리스트 타이틀 -->
+        <TextView
+            android:id="@+id/similar_stores_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_gravity="start" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/similar_stores_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="horizontal" />
-
     </LinearLayout>
 </RelativeLayout>
