@@ -17,11 +17,6 @@ public class CategorySelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_selection);
 
-        // 메인 컨테이너에 fade-in 애니메이션 적용
-        LinearLayout mainContainer = findViewById(R.id.main_container);
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        mainContainer.startAnimation(fadeIn);
-
         // 버튼 초기화
         Button clothingButton = findViewById(R.id.clothing_button);
         Button swimwearButton = findViewById(R.id.swimwear_button);
@@ -56,7 +51,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
             intent.putExtra("age", age);
             intent.putExtra("category", category);
             startActivity(intent);
-            overridePendingTransition(0, 0);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
         // BACK 버튼 클릭 이벤트
@@ -64,7 +59,7 @@ public class CategorySelectionActivity extends AppCompatActivity {
             Intent intent = new Intent(CategorySelectionActivity.this, InfoSelectionActivity.class);
             startActivity(intent);
             finish();
-            overridePendingTransition(0, 0);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 }

@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
-            overridePendingTransition(0, 0);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 
@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, SelectionActivity.class);
                             startActivity(intent);
                             finish();
-                            overridePendingTransition(0, 0);
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         });
                     } catch (Exception e) {
                         Log.e(TAG, "JSON 파싱 오류", e);

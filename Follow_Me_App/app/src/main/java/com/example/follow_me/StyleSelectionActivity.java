@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.json.JSONObject;
@@ -33,11 +34,6 @@ public class StyleSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_style_selection);
 
         Button backButton = findViewById(R.id.back_button);
-
-        // 메인 컨테이너에 fade-in 애니메이션 적용
-        LinearLayout mainContainer = findViewById(R.id.main_container);
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        mainContainer.startAnimation(fadeIn);
 
         // 해시태그 버튼 초기화
         Button[] buttons = {
@@ -77,16 +73,17 @@ public class StyleSelectionActivity extends AppCompatActivity {
             if (selectedButtons.isEmpty()) {
                 Toast.makeText(this, "스타일을 하나 이상 선택해 주세요.", Toast.LENGTH_SHORT).show();
             } else {
-                sendDataToServer();
+                sendDataToServer(); // 데이터를 보내는 메서드 호출
             }
         });
+
 
         // BACK 버튼 클릭 이벤트
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(StyleSelectionActivity.this, CategorySelectionActivity.class);
             startActivity(intent);
             finish();
-            overridePendingTransition(0, 0);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 
@@ -107,38 +104,23 @@ public class StyleSelectionActivity extends AppCompatActivity {
     }
 
     private void sendDataToServer() {
-        // 성별, 나이, 카테고리 선택 값
         String gender = getIntent().getStringExtra("gender");
         String age = getIntent().getStringExtra("age");
         String category = getIntent().getStringExtra("category");
 
-        // UserSession에서 userId 가져오기
-        String userId = UserSession.getInstance().getUserId();
-        if (userId == null) {
-            Toast.makeText(this, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // 스타일 선택 값
-        HashSet<String> styles = new HashSet<>();
+        ArrayList<String> styles = new ArrayList<>();
         for (Button button : selectedButtons) {
             styles.add(button.getText().toString());
         }
 
-        // 서버로 보낼 데이터
-        JSONObject data = new JSONObject();
-        try {
-            data.put("gender", gender);
-            data.put("age", age);
-            data.put("category", category);
-            data.put("styles", styles);
-            data.put("user_id", userId);
-
-            // 하나의 Task로 두 서버에 요청
-            new FetchBrandAndRecommendationTask(this).execute(data.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // 로딩 화면으로 데이터 전달
+        Intent intent = new Intent(this, LoadingActivity.class);
+        intent.putExtra("gender", gender);
+        intent.putExtra("age", age);
+        intent.putExtra("category", category);
+        intent.putStringArrayListExtra("styles", styles);
+        startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private static class FetchBrandAndRecommendationTask extends AsyncTask<String, Void, JSONObject> {

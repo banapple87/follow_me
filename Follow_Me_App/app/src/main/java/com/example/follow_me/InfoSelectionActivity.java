@@ -22,11 +22,6 @@ public class InfoSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_selection);
 
-        // 메인 컨테이너에 fade-in 애니메이션 적용
-        LinearLayout mainContainer = findViewById(R.id.main_container);
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        mainContainer.startAnimation(fadeIn);
-
         maleIcon = findViewById(R.id.male_icon);
         femaleIcon = findViewById(R.id.female_icon);
         agePicker = findViewById(R.id.age_picker);
@@ -54,7 +49,7 @@ public class InfoSelectionActivity extends AppCompatActivity {
                 intent.putExtra("gender", selectedGender);
                 intent.putExtra("age", String.valueOf(selectedAge));
                 startActivity(intent);
-                overridePendingTransition(0, 0);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -63,7 +58,7 @@ public class InfoSelectionActivity extends AppCompatActivity {
             Intent intent = new Intent(InfoSelectionActivity.this, SelectionActivity.class);
             startActivity(intent);
             finish();
-            overridePendingTransition(0, 0);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 

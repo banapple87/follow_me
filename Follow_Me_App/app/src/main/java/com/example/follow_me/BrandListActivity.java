@@ -62,11 +62,6 @@ public class BrandListActivity extends AppCompatActivity {
         similarCustomersTitle.setText(username + "님과 취향이 비슷한 고객님들이 방문한 매장");
         similarStoresTitle.setText(username + "님이 방문한 매장과 비슷한 매장");
 
-        // 메인 컨테이너에 fade-in 애니메이션 적용
-        LinearLayout mainContainer = findViewById(R.id.main_container);
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        mainContainer.startAnimation(fadeIn);
-
         // 서버에서 받은 데이터 파싱 및 표시
         String combinedData = getIntent().getStringExtra("combinedData");
         if (combinedData != null) {
@@ -91,6 +86,7 @@ public class BrandListActivity extends AppCompatActivity {
             Intent intent = new Intent(BrandListActivity.this, MainActivity.class);
             intent.putStringArrayListExtra("brandList", brandList);
             startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
         // BACK 버튼 클릭 이벤트
@@ -98,6 +94,7 @@ public class BrandListActivity extends AppCompatActivity {
             Intent intent = new Intent(BrandListActivity.this, StyleSelectionActivity.class);
             startActivity(intent);
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 

@@ -33,9 +33,6 @@ public class SelectionActivity extends AppCompatActivity {
         shoppingIcon = findViewById(R.id.shopping_icon);
         iconContainer = findViewById(R.id.icon_container);
 
-        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        iconContainer.startAnimation(fadeIn);
-
         horizontalScrollView.post(() -> {
             int centerX = (iconLayout.getWidth() - horizontalScrollView.getWidth()) / 2;
             smoothScrollToCenter(horizontalScrollView, centerX);
@@ -45,7 +42,7 @@ public class SelectionActivity extends AppCompatActivity {
         shoppingIcon.setOnClickListener(v -> {
             Intent intent = new Intent(SelectionActivity.this, InfoSelectionActivity.class);
             startActivity(intent);
-            overridePendingTransition(0, 0);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 

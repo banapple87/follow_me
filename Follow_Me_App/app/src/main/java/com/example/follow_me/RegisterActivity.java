@@ -62,12 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
             );
         }
 
-        registerContainer = findViewById(R.id.register_container);
-
-        // 애니메이션 적용
-        Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
-        registerContainer.startAnimation(slideUp);
-
         nameEditText = findViewById(R.id.name_edit_text);
         ageEditText = findViewById(R.id.age_edit_text);
         usernameEditText = findViewById(R.id.username_edit_text);
@@ -78,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(v -> attemptRegister());
         cancelButton.setOnClickListener(v -> {
             finish();
-            overridePendingTransition(0, 0);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
 
@@ -134,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         Toast.makeText(RegisterActivity.this, "회원가입 성공!", Toast.LENGTH_SHORT).show();
                         finish();
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     });
                 } else {
                     runOnUiThread(() ->
